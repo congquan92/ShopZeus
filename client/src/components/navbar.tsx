@@ -40,7 +40,7 @@ export default function Navbar() {
   const user = { name: "Quan" };
 
   return (
-    <header className="w-full">
+    <header className="w-full sticky top-0 z-50">
       {/* Top bar - Contact info */}
       <Topbar />
       {/* Main bar */}

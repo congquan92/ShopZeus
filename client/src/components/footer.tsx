@@ -23,7 +23,7 @@ export default function Footer() {
         </div>
 
         {/* Liên kết */}
-        <div className="text-center">
+        <div className="text-left md:text-center">
           <h3 className="text-white font-semibold mb-4">Liên kết</h3>
           <ul className="space-y-2 text-sm">
             <li>
