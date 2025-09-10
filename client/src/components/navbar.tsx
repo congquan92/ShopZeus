@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
 } from "./ui/dropdown-menu";
 import { Input } from "./ui/input";
-import { Avatar } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import {
   NavigationMenu,
@@ -37,7 +37,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [isDark, setIsDark] = useState(false);
-  const user = { name: "Quan" }; 
+  const user = { name: "Quan" };
 
   return (
     <header className="w-full">
@@ -58,12 +58,15 @@ export default function Navbar() {
               </button>
 
               <Link to="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold rounded">
-                  SB
-                </div>
-                <div className="hidden sm:block">
-                  <span className="font-bold text-xl tracking-wide">Street Boy</span>
-                  <div className="text-xs text-gray-500">Tự tin sống chất</div>
+                <Avatar className="size-12">
+                  <AvatarImage src="/logo-shop.jpg" alt="SHOP ZUES" />
+                  <AvatarFallback className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold rounded">SZ</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <span className="font-semibold tracking-tight">Shop Zues</span>
+                  <span className="leading-none text-sm text-muted-foreground">
+                    Tự tin sống chất
+                  </span>
                 </div>
               </Link>
             </div>
@@ -101,9 +104,9 @@ export default function Navbar() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="p-1 rounded-full hover:bg-gray-100 cursor-pointer">
-                    <Avatar className="w-8 h-8 ">
+                    <Avatar className="w-8 h-8">
                       <div className="flex items-center justify-center bg-gray-800 text-white rounded-full w-full">
-                       {user ? user.name.slice(0,2).toUpperCase() :  <User size={16} />}
+                        {user ? user.name.slice(0, 2).toUpperCase() : <User size={16} />}
                       </div>
                     </Avatar>
                   </button>
@@ -112,7 +115,7 @@ export default function Navbar() {
                 <DropdownMenuContent align="end" className="w-48 ">
                   <DropdownMenuItem asChild>
                     <Link to="/account" className="flex items-center">
-                      {user ? (<> <User size={16} className="mr-2" /> {user.name} </>) : ( <> <User size={16} className="mr-2" /> Tài khoản </>) }
+                      {user ? (<> <User size={16} className="mr-2" /> {user.name} </>) : (<> <User size={16} className="mr-2" /> Tài khoản </>)}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
