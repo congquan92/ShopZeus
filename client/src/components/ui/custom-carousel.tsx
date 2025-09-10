@@ -54,8 +54,8 @@ export default function BannerCarousel() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-4 bg-white/30 hover:text-blue-700 hover:bg-white/50" />
-                <CarouselNext className="right-4 bg-white/30 hover:text-blue-700 hover:bg-white/50" />
+                <CarouselPrevious className="left-4 bg-white/30 hover:text-blue-700 hover:bg-white/50 cursor-pointer" />
+                <CarouselNext className="right-4 bg-white/30 hover:text-blue-700 hover:bg-white/50 cursor-pointer" />
             </Carousel>
         </div>
     )
