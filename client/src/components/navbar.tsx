@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,
@@ -30,14 +30,16 @@ import {
   Store,
   Heart,
   LogOut,
+  LogIn,
 } from "lucide-react";
 import Topbar from "./ui/topbar";
+import UserContext from "../hook/context/UserContext";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [isDark, setIsDark] = useState(false);
-  const user = { name: "Quan" };
+  const user = useContext(UserContext);
 
   return (
     <header className="w-full sticky top-0 z-50">
@@ -125,7 +127,8 @@ export default function Navbar() {
                     <Link to="/wishlist"> <Heart size={16} />Yêu thích</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link to="/logout"> <LogOut />Đăng xuất</Link>
+                    {user ? (<Link to="/logout"> <LogOut size={16} className="mr-2"/> Đăng xuất</Link>) : (
+                            <Link to="/login"> <LogIn size={16} className="mr-2" /> Đăng nhập</Link> )}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -398,3 +401,7 @@ export default function Navbar() {
     </header>
   );
 }
+function userContext(UserContext: any) {
+  throw new Error("Function not implemented.");
+}
+

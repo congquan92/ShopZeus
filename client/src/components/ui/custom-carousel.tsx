@@ -29,6 +29,10 @@ export default function BannerCarousel() {
         {
             src: "https://file.hstatic.net/1000253775/file/ngang-_2048x813__1_.jpg",
             alt: "Banner 4",
+        },
+        {
+            src: "https://file.hstatic.net/1000253775/file/banner_pc_3688a7ee993a48a3aa2ceda425abfa7b.jpg",
+            alt: "Banner 5",
         }
     ]
 

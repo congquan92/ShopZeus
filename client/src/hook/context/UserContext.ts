@@ -1,6 +1,10 @@
 
 import { createContext } from "react";
-const UserContext = createContext<{ name: string , role : string } | undefined>(undefined);
+interface User {
+    name: string | null;
+    role: string | null;
+}
+const UserContext = createContext<User | null>(null);
 export default UserContext;
 
     

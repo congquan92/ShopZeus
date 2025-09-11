@@ -12,9 +12,10 @@ import UserContext from './hook/context/UserContext'
 function App() {
 // const data = useTest("sadasd");
   const user = {
-    name: "Quan Nguyen",
-    role: "admin"
+    "name": "Quan",
+    "role": "admin"
   }
+  // const user = null;
   return (
     <UserContext.Provider value={user}>
       <>
