@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom'
 import Footer from './components/footer'
 import Home from './components/home'
 import UserContext from './hook/context/UserContext'
+import  Login from './components/login'
+import Register from './components/register'
 // import useTest from './hook/useUppercase'
 // import { Button } from './components/ui/button'
 // import useAPI from './hook/useFetch'
@@ -31,6 +33,8 @@ function App() {
         <Route path="/shoes" element={<h1>Shoes</h1>} />
         <Route path="/sale" element={<h1>Sale</h1>} />
         <Route path="/cart" element={<h1>Cart</h1>} />
+        <Route path="/login" element={  <Login />} />   
+        <Route path="/register" element={<Register />} />
       </Routes>
       <Footer />
     </>
