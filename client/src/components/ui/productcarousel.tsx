@@ -125,7 +125,7 @@ export default function ProductCarousel() {
                             key={product.id}
                             className="pl-1 md:pl-2 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
                         >
-                            <Card className="group overflow-hidden transition-all duration-300 rounded-none  p-0 cursor-pointer">
+                            <Card className="group overflow-hidden transition-all duration-300 rounded-none p-0 cursor-pointer">
                                 <CardContent className="p-0 relative ">
                                     <Badge className="absolute top-1.5 left-1.5 z-10 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-md font-medium">
                                         {product.discount}
