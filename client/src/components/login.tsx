@@ -31,8 +31,8 @@ export default function Login() {
                         </Button>
                     </div>
 
-                    <Separator className="my-4" />
-
+                    <Separator />
+                    
                     {/* Form login */}
                     <form className="space-y-4">
                         <div className="grid gap-2">
@@ -53,8 +53,8 @@ export default function Login() {
                     <Link to="#" className="text-sm text-blue-500 hover:underline">
                         Quên mật khẩu?
                     </Link>
-                     <Link to="/register" className="text-sm text-blue-500 hover:underline">
-                       Chưa có tài khoản? Đăng Ký
+                    <Link to="/register" className="text-sm text-blue-500 hover:underline">
+                        Chưa có tài khoản? Đăng Ký
                     </Link>
                 </CardFooter>
             </Card>
