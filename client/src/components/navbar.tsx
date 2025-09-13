@@ -1,4 +1,4 @@
-import { use, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,
@@ -344,56 +344,200 @@ export default function Navbar() {
       </div>
 
 
-      {/* Mobile menu */}
+      {/* Mobile menu overlay */}
       {mobileOpen && (
-        <div className="md:hidden bg-white border-b shadow-lg">
-          {/* Mobile search */}
-          <div className="px-4 py-3 border-b">
-            <div className="relative">
-              <Input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Bạn đang tìm gì..."
-                className="pl-10"
-              />
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-500" />
+        <div className="fixed inset-0 z-50 md:hidden">
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+            onClick={() => setMobileOpen(false)}
+          />
+          
+          {/* Off-canvas menu */}
+          <div className={`fixed left-0 top-0 h-full w-80 bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${
+            mobileOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}>
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b">
+              <div className="flex items-center gap-3">
+                <Avatar className="size-10">
+                  <AvatarImage src="/logo-shop.jpg" alt="SHOP ZUES" />
+                  <AvatarFallback className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold rounded">SZ</AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col">
+                  <span className="font-semibold text-sm">Shop Zues</span>
+                  <span className="text-xs text-muted-foreground">Tự tin sống chất</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="p-2 rounded-md hover:bg-gray-100"
+                aria-label="Close menu"
+              >
+                <X size={20} />
+              </button>
             </div>
-          </div>
 
-          {/* Mobile menu items */}
-          <div className="px-4 py-2">
-            <div className="flex flex-col gap-1">
-              <Link to="/" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Trang chủ
-              </Link>
-              <Link to="/new" className="px-2 py-3 hover:bg-gray-50 rounded text-red-500 font-medium">
-                🔥 Hàng Mới
-              </Link>
-              <Link to="/tee" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Áo Nam
-              </Link>
-              <Link to="/pants" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Quần Nam
-              </Link>
-              <Link to="/collections" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Bộ Sưu Tập
-              </Link>
-              <Link to="/accessories" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Phụ Kiện
-              </Link>
-              <Link to="/sale" className="px-2 py-3 hover:bg-gray-50 rounded text-red-500 font-medium">
-                🏷️ SALE -50%
-              </Link>
-              <hr className="my-2" />
-              <Link to="/stores" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Cửa hàng
-              </Link>
-              <Link to="/account" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Tài khoản
-              </Link>
-              <Link to="/orders" className="px-2 py-3 hover:bg-gray-50 rounded">
-                Đơn hàng của tôi
-              </Link>
+            {/* Search bar */}
+            <div className="p-4 border-b">
+              <div className="relative">
+                <Input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Bạn đang tìm gì..."
+                  className="pl-10"
+                />
+                <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-500" />
+              </div>
+            </div>
+
+            {/* User info */}
+            {user && (
+              <div className="p-4 border-b bg-gray-50">
+                <div className="flex items-center gap-3">
+                  <Avatar className="w-12 h-12">
+                    <div className="flex items-center justify-center bg-gray-800 text-white rounded-full w-full">
+                      {user?.name?.slice(0, 2).toUpperCase() || 'U'}
+                    </div>
+                  </Avatar>
+                  <div className="flex flex-col">
+                    <span className="font-medium text-sm">{user?.name || 'Guest'}</span>
+                    <span className="text-xs text-muted-foreground">Xin chào!</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Menu content */}
+            <div className="flex-1 overflow-y-auto">
+              <div className="px-4 py-2">
+                <div className="flex flex-col">
+                  {/* Main navigation */}
+                  <div className="mb-4">
+                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-2">
+                      Danh mục
+                    </h3>
+                    <Link 
+                      to="/" 
+                      className="flex items-center px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>Trang chủ</span>
+                    </Link>
+                    <Link 
+                      to="/new" 
+                      className="flex items-center px-2 py-3 hover:bg-gray-50 rounded-md text-red-500 font-medium transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>🔥 Hàng Mới</span>
+                    </Link>
+                    <Link 
+                      to="/tee" 
+                      className="flex items-center px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>Áo Nam</span>
+                    </Link>
+                    <Link 
+                      to="/pants" 
+                      className="flex items-center px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>Quần Nam</span>
+                    </Link>
+                    <Link 
+                      to="/collections" 
+                      className="flex items-center px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>Bộ Sưu Tập</span>
+                    </Link>
+                    <Link 
+                      to="/accessories" 
+                      className="flex items-center px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>Phụ Kiện</span>
+                    </Link>
+                    <Link 
+                      to="/sale" 
+                      className="flex items-center px-2 py-3 hover:bg-gray-50 rounded-md text-red-500 font-medium transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span>🏷️ SALE -50%</span>
+                    </Link>
+                  </div>
+
+                  {/* User actions */}
+                  <div className="border-t pt-4">
+                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-2">
+                      Tài khoản
+                    </h3>
+                    <Link 
+                      to="/stores" 
+                      className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <MapPin size={18} className="text-gray-500" />
+                      <span>Cửa hàng</span>
+                    </Link>
+                    <Link 
+                      to="/account" 
+                      className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <User size={18} className="text-gray-500" />
+                      <span>{user?.name || 'Tài khoản'}</span>
+                    </Link>
+                    <Link 
+                      to="/orders" 
+                      className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <Store size={18} className="text-gray-500" />
+                      <span>Đơn hàng</span>
+                    </Link>
+                    <Link 
+                      to="/wishlist" 
+                      className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <Heart size={18} className="text-gray-500" />
+                      <span>Yêu thích</span>
+                    </Link>
+                    <Link 
+                      to={user ? "/logout" : "/login"}
+                      className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {user ? (
+                        <>
+                          <LogOut size={18} className="text-gray-500" />
+                          <span>Đăng xuất</span>
+                        </>
+                      ) : (
+                        <>
+                          <LogIn size={18} className="text-gray-500" />
+                          <span>Đăng nhập</span>
+                        </>
+                      )}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 border-t bg-gray-50">
+              <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <button
+                  onClick={() => setIsDark(!isDark)}
+                  className="flex items-center gap-2 hover:text-gray-700 transition-colors"
+                >
+                  {isDark ? <Sun size={16} /> : <Moon size={16} />}
+                  <span>{isDark ? 'Sáng' : 'Tối'}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -401,7 +545,5 @@ export default function Navbar() {
     </header>
   );
 }
-function userContext(UserContext: any) {
-  throw new Error("Function not implemented.");
-}
+
 

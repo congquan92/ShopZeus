@@ -46,20 +46,20 @@ export default function BannerCarousel() {
                 <CarouselContent>
                     {banners.map((banner, index) => (
                         <CarouselItem key={index}>
-                            <div className="relative w-full h-[600px]">
+                            <div className="relative w-full h-[250px] sm:h-[400px] md:h-[600px]">
                                 <img
                                     src={banner.src}
                                     alt={banner.alt}
-                                    className="object-cover rounded-lg"
+                                    className="w-full h-full object-cover rounded-lg"
                                 />
-
+                                {/* Overlay nếu cần */}
                                 {/* <div className="absolute inset-0 bg-black/30 rounded-lg" /> */}
                             </div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-4 bg-white/30 hover:text-blue-700 hover:bg-white/50 cursor-pointer" />
-                <CarouselNext className="right-4 bg-white/30 hover:text-blue-700 hover:bg-white/50 cursor-pointer" />
+                <CarouselPrevious className="left-2 sm:left-4 bg-white/40 hover:bg-white/60 text-black rounded-full p-2 sm:p-3 cursor-pointer" />
+                <CarouselNext className="right-2 sm:right-4 bg-white/40 hover:bg-white/60 text-black rounded-full p-2 sm:p-3 cursor-pointer" />
             </Carousel>
         </div>
     )
