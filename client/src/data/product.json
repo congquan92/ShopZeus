@@ -1,0 +1,99 @@
+[
+  {
+    "id": 1,
+    "name": "Áo Thun Nam ICONDENIM Canyon",
+    "description": "Áo thun nam chất liệu cotton cao cấp, thiết kế hiện đại",
+    "category": "Áo",
+    "brand": "ICONDENIM",
+    "discount": "Hàng mới",
+    "rating": 4.8,
+    "sold": 89,
+    "tags": ["áo", "nam", "cotton"],
+    "variants": [
+      {
+        "color": {
+          "name": "Dark Grey",
+          "code": "#4a4a4a",
+          "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_ao_thun_583-3_eeaf15a8ba064f6f94a386adac832132_grande.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_thun_583-8_393e60dbe0cc4f4584525285ca137f9d_grande.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_thun_583-7_142dc621ff034ad9aa30d23a949eb886_grande.jpg"
+          ]
+        },
+        "sizes": ["29", "30", "31", "32", "34", "36"],
+        "price": "350.000₫",
+        "originalPrice": "499.000₫",
+        "stock": { "29": 5, "30": 10, "31": 8, "32": 12, "34": 6, "36": 3 }
+      },
+      {
+        "color": {
+          "name": "Blue",
+          "code": "#1e40af",
+          "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_short_jean_blue-1_3bce215b217d4649bb56241671a2bb77_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_short_jean_blue-2_3bce215b217d4649bb56241671a2bb77_large.jpg"
+          ]
+        },
+        "sizes": ["29", "30", "31", "32", "34"],
+        "price": "350.000₫",
+        "originalPrice": "499.000₫",
+        "stock": { "29": 3, "30": 7, "31": 5, "32": 9, "34": 4 }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Áo Polo Nam Cao Cấp",
+    "description": "Áo polo nam chất liệu cotton blend, form dáng regular fit",
+    "category": "Áo",
+    "brand": "Premium",
+    "discount": "Hàng mới",
+    "rating": 4.8,
+    "sold": 89,
+    "tags": ["polo", "nam", "cotton"],
+    "variants": [
+      {
+        "color": {
+          "name": "Navy",
+          "code": "#1e3a8a",
+          "images": [
+            "https://cdn.hstatic.net/products/1000253775/polo_navy_1_3bce215b217d4649bb56241671a2bb77_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/polo_navy_2_3bce215b217d4649bb56241671a2bb77_large.jpg"
+          ]
+        },
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "price": "399.000₫",
+        "originalPrice": "499.000₫",
+        "stock": { "S": 8, "M": 15, "L": 12, "XL": 7, "XXL": 5 }
+      },
+      {
+        "color": {
+          "name": "White",
+          "code": "#ffffff",
+          "images": [
+            "https://cdn.hstatic.net/products/1000253775/polo_white_1_3bce215b217d4649bb56241671a2bb77_large.jpg"
+          ]
+        },
+        "sizes": ["S", "M", "L", "XL"],
+        "price": "399.000₫",
+        "originalPrice": "499.000₫",
+        "stock": { "S": 6, "M": 10, "L": 8, "XL": 4 }
+      },
+      {
+        "color": {
+          "name": "Black",
+          "code": "#000000",
+          "images": [
+            "https://cdn.hstatic.net/products/1000253775/polo_black_1_3bce215b217d4649bb56241671a2bb77_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/polo_black_2_3bce215b217d4649bb56241671a2bb77_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/polo_black_3_3bce215b217d4649bb56241671a2bb77_large.jpg"
+          ]
+        },
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "price": "399.000₫",
+        "originalPrice": "499.000₫",
+        "stock": { "S": 5, "M": 12, "L": 9, "XL": 6, "XXL": 3 }
+      }
+    ]
+  }
+]
