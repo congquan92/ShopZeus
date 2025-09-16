@@ -163,7 +163,7 @@ export default function Navbar() {
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link to="/new" className="px-4 py-3 hover:text-red-500 font-medium">
+                  <Link to="/newproduct" className="px-4 py-3 hover:text-red-500 font-medium">
                     🔥 Hàng Mới
                   </Link>
                 </NavigationMenuLink>
