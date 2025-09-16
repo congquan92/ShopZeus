@@ -55,10 +55,7 @@ export default function NewProduct() {
             </Breadcrumb>
 
             {/* Title */}
-            <TitleCompact
-                title="Sản Phẩm Mới"
-                subtitle="Khám Phá Những Sản Phẩm Mới Nhất Của Chúng Tôi"
-            />
+            <TitleCompact title="Sản Phẩm Mới" subtitle="Khám Phá Những Sản Phẩm Mới Nhất Của Chúng Tôi"  />
 
             {/* Danh sách sản phẩm */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
