@@ -1,0 +1,149 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "orderNumber": "DH001",
+        "status": "completed",
+        "orderDate": "2024-01-15T10:30:00Z",
+        "deliveryDate": "2024-01-18T14:00:00Z",
+        "items": [
+            {
+                "productId": 1,
+                "name": "Quần Tây Nam ICONDENIM Monte Harrison Trousers",
+                "price": 479000,
+                "quantity": 1,
+                "size": "L",
+                "color": "Xanh navy",
+                "image": "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-7_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg"
+            },
+            {
+                "productId": 2,
+                "name": "Áo Sơ Mi Nam ICONDENIM Monte Harrison Shirt",
+                "price": 399000,
+                "quantity": 1,
+                "size": "L",
+                "color": "Trắng",
+                "image": "https://cdn.hstatic.net/products/1000253775/160_somi_301-2_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg"
+            }
+        ],
+        "shipping": {
+            "method": "Giao hàng tiêu chuẩn",
+            "fee": 30000,
+            "address": "123 Đường ABC, Quận 1, TP.HCM"
+        },
+        "payment": {
+            "method": "COD",
+            "status": "paid",
+            "total": 908000
+        },
+        "tracking": [
+            {
+                "status": "confirmed",
+                "date": "2024-01-15T10:30:00Z",
+                "description": "Đơn hàng đã được xác nhận"
+            },
+            {
+                "status": "processing",
+                "date": "2024-01-16T09:00:00Z",
+                "description": "Đang chuẩn bị hàng"
+            },
+            {
+                "status": "shipped",
+                "date": "2024-01-17T08:00:00Z",
+                "description": "Đã giao cho đơn vị vận chuyển"
+            },
+            {
+                "status": "delivered",
+                "date": "2024-01-18T14:00:00Z",
+                "description": "Giao hàng thành công"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "orderNumber": "DH002",
+        "status": "shipping",
+        "orderDate": "2024-01-20T15:45:00Z",
+        "deliveryDate": null,
+        "items": [
+            {
+                "productId": 3,
+                "name": "Áo Thun Nam ICONDENIM Monte Harrison Tee",
+                "price": 299000,
+                "quantity": 2,
+                "size": "M",
+                "color": "Đen",
+                "image": "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-4_105c4710ac9e409fa1355164ce917963_1024x1024.jpg"
+            }
+        ],
+        "shipping": {
+            "method": "Giao hàng nhanh",
+            "fee": 50000,
+            "address": "456 Đường XYZ, Quận 3, TP.HCM"
+        },
+        "payment": {
+            "method": "Banking",
+            "status": "paid",
+            "total": 648000
+        },
+        "tracking": [
+            {
+                "status": "confirmed",
+                "date": "2024-01-20T15:45:00Z",
+                "description": "Đơn hàng đã được xác nhận"
+            },
+            {
+                "status": "processing",
+                "date": "2024-01-21T10:00:00Z",
+                "description": "Đang chuẩn bị hàng"
+            },
+            {
+                "status": "shipped",
+                "date": "2024-01-22T09:30:00Z",
+                "description": "Đã giao cho đơn vị vận chuyển"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "userId": 1,
+        "orderNumber": "DH003",
+        "status": "processing",
+        "orderDate": "2024-01-25T11:20:00Z",
+        "deliveryDate": null,
+        "items": [
+            {
+                "productId": 5,
+                "name": "Áo Khoác Nam ICONDENIM Monte Harrison Jacket",
+                "price": 799000,
+                "quantity": 1,
+                "size": "XL",
+                "color": "Xám",
+                "image": "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-2_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg"
+            }
+        ],
+        "shipping": {
+            "method": "Giao hàng tiêu chuẩn",
+            "fee": 30000,
+            "address": "789 Đường DEF, Quận 7, TP.HCM"
+        },
+        "payment": {
+            "method": "COD",
+            "status": "pending",
+            "total": 829000
+        },
+        "tracking": [
+            {
+                "status": "confirmed",
+                "date": "2024-01-25T11:20:00Z",
+                "description": "Đơn hàng đã được xác nhận"
+            },
+            {
+                "status": "processing",
+                "date": "2024-01-26T08:00:00Z",
+                "description": "Đang chuẩn bị hàng"
+            }
+        ]
+    }
+]

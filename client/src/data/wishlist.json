@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "productId": 1,
+        "name": "Quần Tây Nam ICONDENIM Monte Harrison Trousers",
+        "price": 479000,
+        "originalPrice": 600000,
+        "image": "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-7_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg",
+        "addedDate": "2024-01-10T12:00:00Z",
+        "inStock": true
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "productId": 3,
+        "name": "Áo Thun Nam ICONDENIM Monte Harrison Tee",
+        "price": 299000,
+        "originalPrice": 350000,
+        "image": "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-4_105c4710ac9e409fa1355164ce917963_1024x1024.jpg",
+        "addedDate": "2024-01-12T09:30:00Z",
+        "inStock": true
+    },
+    {
+        "id": 3,
+        "userId": 1,
+        "productId": 5,
+        "name": "Áo Khoác Nam ICONDENIM Monte Harrison Jacket",
+        "price": 799000,
+        "originalPrice": 1000000,
+        "image": "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-2_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg",
+        "addedDate": "2024-01-14T16:45:00Z",
+        "inStock": true
+    },
+    {
+        "id": 4,
+        "userId": 1,
+        "productId": 6,
+        "name": "Áo Polo Nam ICONDENIM Monte Harrison Polo",
+        "price": 349000,
+        "originalPrice": 400000,
+        "image": "https://cdn.hstatic.net/products/1000253775/160_quan_tay_067-12_413eecc935164edb8cddaef50584dc47_large.jpg",
+        "addedDate": "2024-01-16T11:20:00Z",
+        "inStock": false
+    },
+    {
+        "id": 5,
+        "userId": 2,
+        "productId": 2,
+        "name": "Áo Sơ Mi Nam ICONDENIM Monte Harrison Shirt",
+        "price": 399000,
+        "originalPrice": 500000,
+        "image": "https://cdn.hstatic.net/products/1000253775/160_somi_301-2_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg",
+        "addedDate": "2024-01-18T14:10:00Z",
+        "inStock": true
+    }
+]

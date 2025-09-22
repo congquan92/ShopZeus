@@ -1,0 +1,158 @@
+[
+    {
+        "id": 1,
+        "name": "Áo Nam",
+        "slug": "ao-nam",
+        "image": "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-4_105c4710ac9e409fa1355164ce917963_1024x1024.jpg",
+        "description": "Bộ sưu tập áo nam đa dạng từ áo thun, polo đến áo khoác",
+        "subCategories": [
+            {
+                "id": 11,
+                "name": "Áo Polo",
+                "slug": "ao-polo",
+                "productCount": 45
+            },
+            {
+                "id": 12,
+                "name": "Áo Sơ Mi",
+                "slug": "ao-so-mi", 
+                "productCount": 32
+            },
+            {
+                "id": 13,
+                "name": "Áo Khoác",
+                "slug": "ao-khoac",
+                "productCount": 28
+            },
+            {
+                "id": 14,
+                "name": "Áo Thun",
+                "slug": "ao-thun",
+                "productCount": 56
+            },
+            {
+                "id": 15,
+                "name": "Áo Hoodie",
+                "slug": "ao-hoodie",
+                "productCount": 22
+            },
+            {
+                "id": 16,
+                "name": "Áo Len / Sweater",
+                "slug": "ao-len-sweater",
+                "productCount": 18
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Quần Nam",
+        "slug": "quan-nam",
+        "image": "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-7_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg",
+        "description": "Bộ sưu tập quần nam từ quần jeans, kaki đến quần short",
+        "subCategories": [
+            {
+                "id": 21,
+                "name": "Quần Jeans",
+                "slug": "quan-jeans",
+                "productCount": 38
+            },
+            {
+                "id": 22,
+                "name": "Quần Kaki",
+                "slug": "quan-kaki",
+                "productCount": 25
+            },
+            {
+                "id": 23,
+                "name": "Quần Short",
+                "slug": "quan-short",
+                "productCount": 35
+            },
+            {
+                "id": 24,
+                "name": "Quần Joggers",
+                "slug": "quan-joggers",
+                "productCount": 20
+            },
+            {
+                "id": 25,
+                "name": "Quần Tây",
+                "slug": "quan-tay",
+                "productCount": 15
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Bộ Sưu Tập",
+        "slug": "bo-suu-tap",
+        "image": "https://cdn.hstatic.net/products/1000253775/160_somi_301-2_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg",
+        "description": "Các bộ quần áo phối hợp hoàn hảo cho nhiều phong cách",
+        "subCategories": [
+            {
+                "id": 31,
+                "name": "Set Quần Áo",
+                "slug": "set-quan-ao",
+                "productCount": 12
+            },
+            {
+                "id": 32,
+                "name": "Set Thường Ngày",
+                "slug": "set-thuong-ngay",
+                "productCount": 8
+            },
+            {
+                "id": 33,
+                "name": "Set Thể Thao",
+                "slug": "set-the-thao",
+                "productCount": 6
+            },
+            {
+                "id": 34,
+                "name": "Set Công Sở",
+                "slug": "set-cong-so",
+                "productCount": 4
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Phụ Kiện",
+        "slug": "phu-kien",
+        "image": "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-2_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg",
+        "description": "Phụ kiện thời trang hoàn thiện phong cách của bạn",
+        "subCategories": [
+            {
+                "id": 41,
+                "name": "Mũ/Nón",
+                "slug": "mu-non",
+                "productCount": 16
+            },
+            {
+                "id": 42,
+                "name": "Túi/Balo",
+                "slug": "tui-balo",
+                "productCount": 24
+            },
+            {
+                "id": 43,
+                "name": "Thắt Lưng",
+                "slug": "that-lung",
+                "productCount": 18
+            },
+            {
+                "id": 44,
+                "name": "Đồng Hồ",
+                "slug": "dong-ho",
+                "productCount": 12
+            },
+            {
+                "id": 45,
+                "name": "Giày Dép",
+                "slug": "giay-dep",
+                "productCount": 32
+            }
+        ]
+    }
+]

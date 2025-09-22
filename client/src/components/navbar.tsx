@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,
@@ -33,13 +33,13 @@ import {
   LogIn,
 } from "lucide-react";
 import Topbar from "./ui/topbar";
-import UserContext from "../hook/context/UserContext";
+import { useAuth } from "../hook/context/AuthContext";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [isDark, setIsDark] = useState(false);
-  const user = useContext(UserContext);
+  const { user, logout } = useAuth();
 
   return (
     <header className="w-full sticky top-0 z-50">
@@ -127,8 +127,23 @@ export default function Navbar() {
                     <Link to="/wishlist"> <Heart size={16} />Yêu thích</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    {user ? (<Link to="/logout"> <LogOut size={16} className="mr-2"/> Đăng xuất</Link>) : (
-                            <Link to="/login"> <LogIn size={16} className="mr-2" /> Đăng nhập</Link> )}
+                    {user ? (
+                      <button 
+                        onClick={() => {
+                          logout();
+                          window.location.href = '/';
+                        }}
+                        className="flex items-center w-full text-left"
+                      > 
+                        <LogOut size={16} className="mr-2"/> 
+                        Đăng xuất
+                      </button>
+                    ) : (
+                      <Link to="/login"> 
+                        <LogIn size={16} className="mr-2" /> 
+                        Đăng nhập
+                      </Link> 
+                    )}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -505,23 +520,28 @@ export default function Navbar() {
                       <Heart size={18} className="text-gray-500" />
                       <span>Yêu thích</span>
                     </Link>
-                    <Link 
-                      to={user ? "/logout" : "/login"}
-                      className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {user ? (
-                        <>
-                          <LogOut size={18} className="text-gray-500" />
-                          <span>Đăng xuất</span>
-                        </>
-                      ) : (
-                        <>
-                          <LogIn size={18} className="text-gray-500" />
-                          <span>Đăng nhập</span>
-                        </>
-                      )}
-                    </Link>
+                    {user ? (
+                      <button
+                        onClick={() => {
+                          logout();
+                          setMobileOpen(false);
+                          window.location.href = '/';
+                        }}
+                        className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors w-full text-left"
+                      >
+                        <LogOut size={18} className="text-gray-500" />
+                        <span>Đăng xuất</span>
+                      </button>
+                    ) : (
+                      <Link 
+                        to="/login"
+                        className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        <LogIn size={18} className="text-gray-500" />
+                        <span>Đăng nhập</span>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
