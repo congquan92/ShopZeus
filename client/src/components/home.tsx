@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import BannerEffect from "./ui/bannereffect"
 import ButtonCenter from "./ui/buttonALL"
 import BannerCarousel from "./ui/custom-carousel"
@@ -7,6 +8,23 @@ import ProductCarousel from "./ui/productcarousel"
 import Products from "./ui/products"
 
 export default function Home() {
+  const [data , setData] = useState();
+  useEffect(()=>{
+   const fetchData = async () => {
+     try {
+       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+       const json = await response.json();
+       setData(json);
+      //  console.log(json);
+     } catch (error) {
+       console.error('Error fetching data:', error);
+     }
+    };
+   fetchData();
+  //  console.log(data);
+  },[])
+
+
   return (
     <div className="container mx-auto px-2 space-y-4">
 
@@ -27,8 +45,6 @@ export default function Home() {
         <ButtonCenter input="Xem Tất Cả"  />
       </div>
 
-   
-
       <div className="py-2">
         <BannerEffect imageUrl="https://file.hstatic.net/1000253775/file/h_ng_b_n_ch_y_6__2_.jpg" />
       </div>
@@ -42,6 +58,7 @@ export default function Home() {
         <Gallery />
         <ButtonCenter input="Xem Ngay"  />
       </div>
+ 
     </div>
   )
 }

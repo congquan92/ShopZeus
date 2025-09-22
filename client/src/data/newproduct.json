@@ -1,0 +1,68 @@
+[
+    {
+        "id":   1,
+        "name": "Quần Tây Nam ICONDENIM Monte Harrison Trousers",
+        "price": 479000,
+        "originalPrice": 600000,
+        "discount":  "sale",
+        "img": "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-7_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg",
+        "rating": 4.5,
+        "sold": 150,
+        "isNew": false
+    },
+    {
+        "id":   2,
+        "name": "Áo Sơ Mi Nam ICONDENIM Monte Harrison Shirt",
+        "price": 399000,
+        "originalPrice": 500000,
+        "discount":  "sale",
+        "img": "https://cdn.hstatic.net/products/1000253775/160_somi_301-2_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg",
+        "rating": 4.0,
+        "sold": 200,
+        "isNew": true
+    },
+    {
+        "id":   3,
+        "name": "Áo Thun Nam ICONDENIM Monte Harrison Tee",
+        "price": 299000,
+        "originalPrice": 350000,
+        "discount":  "hot",
+        "img": "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-4_105c4710ac9e409fa1355164ce917963_1024x1024.jpg",
+        "rating": 4.8,
+        "sold": 300,
+        "isNew": true
+    },
+    {
+        "id":   4,
+        "name": "Quần Jeans Nam ICONDENIM Monte Harrison Jeans",
+        "price": 599000,
+        "originalPrice": 750000,
+        "discount":  "sale",
+        "img": "https://cdn.hstatic.net/products/1000253775/160_somi_301-1_5ec575d6cf564661be04a962dfee8066_large.jpg",
+        "rating": 4.2,
+        "sold": 120,
+        "isNew": false
+    },
+    {
+        "id":   5,
+        "name": "Áo Khoác Nam ICONDENIM Monte Harrison Jacket",
+        "price": 799000,
+        "originalPrice": 1000000,
+        "discount":  "sale",
+        "img": "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-2_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg",
+        "rating": 4.6,
+        "sold": 80,
+        "isNew": true
+    },
+    {
+        "id":   6,
+        "name": "Áo Polo Nam ICONDENIM Monte Harrison Polo",
+        "price": 349000,
+        "originalPrice": 400000,
+        "discount":  "new",
+        "img": "https://cdn.hstatic.net/products/1000253775/160_quan_tay_067-12_413eecc935164edb8cddaef50584dc47_large.jpg",
+        "rating": 4.3,
+        "sold": 220,
+        "isNew": false
+    }
+]

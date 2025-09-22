@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "name": "Quần Tây Nam ICONDENIM Monte Harrison Trousers",
+        "price": "479.000₫",
+        "originalPrice": "600.000₫",
+        "discount": "20%",
+        "rating": 4.5,
+        "sold": 150,
+        "description": "Quần tây nam chất liệu vải cao cấp, thiết kế hiện đại, phù hợp cho môi trường công sở và các dịp trang trọng. Form dáng chuẩn, thoải mái khi mặc.",
+        "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-7_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-8_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-9_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_070-10_01acc5523291461dbf84208c9f4f87c3_1024x1024.jpg"
+        ],
+        "sizes": ["29", "30", "31", "32", "33", "34"],
+        "colors": ["Xám", "Đen", "Navy", "Nâu"],
+        "inStock": true,
+        "specifications": {
+            "Chất liệu": "65% Polyester, 35% Cotton",
+            "Xuất xứ": "Việt Nam",
+            "Kiểu dáng": "Slim fit",
+            "Hướng dẫn bảo quản": "Giặt máy ở nhiệt độ 30°C, không sử dụng chất tẩy"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Áo Sơ Mi Nam ICONDENIM Monte Harrison Shirt",
+        "price": "399.000₫",
+        "originalPrice": "500.000₫",
+        "discount": "20%",
+        "rating": 4.0,
+        "sold": 200,
+        "description": "Áo sơ mi nam chất liệu cotton cao cấp, thiết kế thanh lịch và sang trọng. Phù hợp cho cả môi trường công sở lẫn các buổi gặp gỡ quan trọng.",
+        "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-2_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-3_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-4_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-5_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg"
+        ],
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "colors": ["Trắng", "Xanh nhạt", "Hồng nhạt", "Xám"],
+        "inStock": true,
+        "specifications": {
+            "Chất liệu": "100% Cotton",
+            "Xuất xứ": "Việt Nam",
+            "Kiểu dáng": "Regular fit",
+            "Hướng dẫn bảo quản": "Giặt tay hoặc giặt máy ở chế độ nhẹ, là ở nhiệt độ trung bình"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Áo Thun Nam ICONDENIM Monte Harrison Tee",
+        "price": "299.000₫",
+        "originalPrice": "350.000₫",
+        "discount": "15%",
+        "rating": 4.8,
+        "sold": 300,
+        "description": "Áo thun nam chất liệu cotton cao cấp, thoáng mát và thấm hút mồ hôi tốt. Thiết kế đơn giản nhưng thời trang, phù hợp cho mọi hoạt động hàng ngày.",
+        "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-4_105c4710ac9e409fa1355164ce917963_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-5_105c4710ac9e409fa1355164ce917963_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-6_105c4710ac9e409fa1355164ce917963_1024x1024.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_polo_237-7_105c4710ac9e409fa1355164ce917963_1024x1024.jpg"
+        ],
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "colors": ["Đen", "Trắng", "Xám", "Navy", "Đỏ đô"],
+        "inStock": true,
+        "specifications": {
+            "Chất liệu": "100% Cotton",
+            "Xuất xứ": "Việt Nam",
+            "Kiểu dáng": "Regular fit",
+            "Hướng dẫn bảo quản": "Giặt máy ở nhiệt độ thấp, không sử dụng chất tẩy"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Quần Jeans Nam ICONDENIM Monte Harrison Jeans",
+        "price": "599.000₫",
+        "originalPrice": "750.000₫",
+        "discount": "20%",
+        "rating": 4.2,
+        "sold": 120,
+        "description": "Quần jeans nam chất liệu denim cao cấp, bền đẹp theo thời gian. Thiết kế hiện đại với form dáng ôm vừa phải, tôn dáng người mặc.",
+        "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-1_5ec575d6cf564661be04a962dfee8066_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-2_5ec575d6cf564661be04a962dfee8066_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-3_5ec575d6cf564661be04a962dfee8066_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_somi_301-4_5ec575d6cf564661be04a962dfee8066_large.jpg"
+        ],
+        "sizes": ["29", "30", "31", "32", "33", "34", "36"],
+        "colors": ["Xanh đậm", "Xanh nhạt", "Đen", "Xám"],
+        "inStock": true,
+        "specifications": {
+            "Chất liệu": "98% Cotton, 2% Elastane",
+            "Xuất xứ": "Việt Nam",
+            "Kiểu dáng": "Slim fit",
+            "Hướng dẫn bảo quản": "Giặt máy ở nhiệt độ 30°C, lộn trái khi giặt"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Áo Khoác Nam ICONDENIM Monte Harrison Jacket",
+        "price": "799.000₫",
+        "originalPrice": "1.000.000₫",
+        "discount": "20%",
+        "rating": 4.6,
+        "sold": 80,
+        "description": "Áo khoác nam thiết kế hiện đại, chất liệu cao cấp giữ ấm tốt. Phù hợp cho thời tiết se lạnh, có thể kết hợp với nhiều trang phục khác nhau.",
+        "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-2_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-3_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-4_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_ao_thun_576-5_14239fdfdf3243f2b251514b1ed8eaf4_large.jpg"
+        ],
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "colors": ["Đen", "Navy", "Xám", "Nâu"],
+        "inStock": true,
+        "specifications": {
+            "Chất liệu": "80% Polyester, 20% Cotton",
+            "Xuất xứ": "Việt Nam",
+            "Kiểu dáng": "Regular fit",
+            "Hướng dẫn bảo quản": "Giặt khô hoặc giặt tay nhẹ nhàng"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Áo Polo Nam ICONDENIM Monte Harrison Polo",
+        "price": "349.000₫",
+        "originalPrice": "400.000₫",
+        "discount": "13%",
+        "rating": 4.3,
+        "sold": 220,
+        "description": "Áo polo nam chất liệu cotton pha, thoáng mát và thấm hút mồ hôi. Thiết kế lịch sự nhưng không kém phần năng động, phù hợp cho cả đi làm và đi chơi.",
+        "images": [
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_067-12_413eecc935164edb8cddaef50584dc47_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_067-13_413eecc935164edb8cddaef50584dc47_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_067-14_413eecc935164edb8cddaef50584dc47_large.jpg",
+            "https://cdn.hstatic.net/products/1000253775/160_quan_tay_067-15_413eecc935164edb8cddaef50584dc47_large.jpg"
+        ],
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "colors": ["Trắng", "Đen", "Navy", "Xanh lá", "Đỏ"],
+        "inStock": true,
+        "specifications": {
+            "Chất liệu": "60% Cotton, 40% Polyester",
+            "Xuất xứ": "Việt Nam",
+            "Kiểu dáng": "Regular fit",
+            "Hướng dẫn bảo quản": "Giặt máy ở nhiệt độ 40°C, không sử dụng chất tẩy"
+        }
+    }
+]

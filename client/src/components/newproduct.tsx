@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SlashIcon, Heart } from "lucide-react"
 import { Link } from "react-router-dom"
 import {
@@ -12,31 +12,52 @@ import TitleCompact from "./ui/title_compact"
 import { Card, CardContent, CardFooter } from "./ui/card"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
+import testdata from '../data/newproduct.json'
+
+interface Product {
+    id: number
+    name: string
+    price: string | number
+    originalPrice: string | number
+    discount: string
+    img: string
+    rating: number
+    sold: number
+    isNew: boolean
+}
 
 export default function NewProduct() {
     const [currentPage, setCurrentPage] = useState(1)
+    const [data, setData] = useState<Product[]>([]);
     const pageSize = 18
 
-    // 👉 Danh sách sản phẩm mới với thông tin đầy đủ
-    const allProducts = Array.from({ length: 50 }, (_, index) => ({
-        id: index + 1,
-        name: `Áo thun nam cao cấp ${index + 1}`,
-        price: `${(Math.random() * 500 + 100).toFixed(0)}.000₫`,
-        originalPrice: `${(Math.random() * 200 + 600).toFixed(0)}.000₫`,
-        discount: Math.random() > 0.5 ? "hàng mới" : "sale",
-        img: `https://cdn.hstatic.net/products/1000253775/160_somi_301-2_ead36e4a16c840d5bdc2fdeedf199213_1024x1024.jpg`,
-        rating: +(Math.random() * 2 + 3).toFixed(1),
-        sold: Math.floor(Math.random() * 200 + 10),
-        isNew: Math.random() > 0.7,
-    }))
-
-    const totalPages = Math.ceil(allProducts.length / pageSize)
+    const totalPages = Math.ceil(data.length / pageSize)
 
     // 👉 Cắt sản phẩm theo trang
-    const products = allProducts.slice(
+    const products = data.slice(
         (currentPage - 1) * pageSize,
         currentPage * pageSize
     )
+    // doi co api that
+    // useEffect(()=>{
+    //     const fetchData = async () => {
+    //       try {
+    //         const response = await fetch('D:\\ShopZeus\\client\\src\\data\\newproduct.json');
+    //         const json = await response.json();
+    //         setData(json);
+    //         console.log(json);
+    //       } catch (error) {
+    //         console.error('Error fetching data:', error);
+    //       }
+    //     }
+    //     fetchData();
+    //     console.log(data);
+    // },[])
+    useEffect(() => {
+        setData(testdata);
+        // console.log(data);
+    }, [])
+
 
     return (
         <div className="container mx-auto p-2 space-y-4">
@@ -50,7 +71,7 @@ export default function NewProduct() {
                         <SlashIcon />
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href="/components">Sản phẩm mới</BreadcrumbLink>
+                        <BreadcrumbLink href="/newproduct">Sản phẩm mới</BreadcrumbLink>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
@@ -110,7 +131,13 @@ export default function NewProduct() {
                                     </span>
                                 </div>
                                 <Badge className="bg-red-600 text-amber-50 text-xs px-1.5 py-0.5 rounded-md font-medium">
-                                    {Math.floor((parseFloat(product.originalPrice.replace(/[^0-9]/g, '')) - parseFloat(product.price.replace(/[^0-9]/g, ''))) / parseFloat(product.originalPrice.replace(/[^0-9]/g, '')) * 100)}%
+                                    {(() => {
+                                        const original = parseFloat(String(product.originalPrice).replace(/[^0-9]/g, ''));
+                                        const price = parseFloat(String(product.price).replace(/[^0-9]/g, ''));
+                                        return original && price
+                                            ? Math.floor(((original - price) / original) * 100)
+                                            : 0;
+                                    })()}%
                                 </Badge>
                             </div>
                         </CardFooter>

@@ -7,7 +7,10 @@ import UserContext from './hook/context/UserContext'
 import  Login from './components/login'
 import Register from './components/register'
 import NewProduct from './components/newproduct'
+import ProductDetail from './components/productdetail'
 import Cart from './components/cart'
+
+
 // import useTest from './hook/useUppercase'
 // import { Button } from './components/ui/button'
 // import useAPI from './hook/useFetch'
@@ -30,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/newproduct" element={ <NewProduct /> } />
+          <Route path="/product/:id" element={ <ProductDetail /> } />
           <Route path="/tops" element={<h1>Tops</h1>} />
           <Route path="/bottoms" element={<h1>Bottoms</h1>} />
           <Route path="/shoes" element={<h1>Shoes</h1>} />
