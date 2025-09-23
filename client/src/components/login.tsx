@@ -10,9 +10,34 @@ import {
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Separator } from "./ui/separator"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuth } from "../hook/context/AuthContext"
+import { useState } from "react"
 
 export default function Login() {
+    const { login } = useAuth()
+    const navigate = useNavigate()
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        const success = login(username, password)
+        if (success) {
+            // Nếu login thành công nhưng là admin -> báo lỗi
+            if (username === "admin") {
+                setError("Tài khoản admin phải đăng nhập tại /admin/login")
+                return
+            }
+            navigate("/") // chuyển về home
+        } else {
+
+            setError("Sai tài khoản hoặc mật khẩu")
+            console.log(username, password)
+        }
+    }
+
     return (
         <div className="flex items-center justify-center p-20">
             <Card className="w-[400px] shadow-lg rounded-none">
@@ -32,16 +57,29 @@ export default function Login() {
                     </div>
 
                     <Separator />
-                    
+
                     {/* Form login */}
-                    <form className="space-y-4">
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" placeholder="Enter your email" />
+                            <Label htmlFor="username">Tên đăng nhập</Label>
+                            <Input
+                                id="username"
+                                placeholder="Tên đăng nhập"
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="password">Mật khẩu</Label>
-                            <Input id="password" type="password" placeholder="**********" />
+                            <Input
+                                id="password"
+                                placeholder="*******************"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
                         <Button type="submit" className="w-full cursor-pointer">
                             Đăng Nhập

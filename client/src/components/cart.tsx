@@ -1,6 +1,6 @@
 
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SlashIcon, Plus, Minus, Trash2, ShoppingBag, Tag, CreditCard } from "lucide-react"
 import {
     Breadcrumb,
@@ -65,7 +65,11 @@ export default function Cart() {
     const [couponCode, setCouponCode] = useState("")
     const shippingFee = 30000
     const couponDiscount = 0.1 // 10% discount
-
+    useEffect(() => {
+       const t = localStorage.getItem("cart");
+       console.log(t);
+       setCartItems(t ? JSON.parse(t) : []);
+    }, [])
     const updateQuantity = (id: number, change: number) => {
         setCartItems(items =>
             items.map(item =>

@@ -12,8 +12,7 @@ import TitleCompact from "./ui/title_compact"
 import { Card, CardContent, CardFooter } from "./ui/card"
 import { Button } from "./ui/button"
 import { Badge } from "./ui/badge"
-import testdata from '../data/newproduct.json'
-
+import Loader from "./ui/loader"
 interface Product {
     id: number
     name: string
@@ -29,6 +28,8 @@ interface Product {
 export default function NewProduct() {
     const [currentPage, setCurrentPage] = useState(1)
     const [data, setData] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true)
+
     const pageSize = 18
 
     const totalPages = Math.ceil(data.length / pageSize)
@@ -38,27 +39,26 @@ export default function NewProduct() {
         (currentPage - 1) * pageSize,
         currentPage * pageSize
     )
-    // doi co api that
-    // useEffect(()=>{
-    //     const fetchData = async () => {
-    //       try {
-    //         const response = await fetch('D:\\ShopZeus\\client\\src\\data\\newproduct.json');
-    //         const json = await response.json();
-    //         setData(json);
-    //         console.log(json);
-    //       } catch (error) {
-    //         console.error('Error fetching data:', error);
-    //       }
-    //     }
-    //     fetchData();
-    //     console.log(data);
-    // },[])
+
     useEffect(() => {
-        setData(testdata);
-        // console.log(data);
-    }, [])
+       const fetchData = async () => {
+         try {
+           const response = await fetch('/src/data/newproduct.json');
+           const json = await response.json();
+           setData(json);
+           // console.log(json);
+         } catch (error) {
+            console.error('Error fetching data:', error);
+         } finally {
+           setLoading(false);
+         }
+       };
+       fetchData();
+     }, []);
 
-
+     if (loading) {
+        return <Loader text="Đang tải sản phẩm mới..." subtext="Vui lòng chờ trong giây lát" />;
+     }
     return (
         <div className="container mx-auto p-2 space-y-4">
             {/* Breadcrumb */}

@@ -1,27 +1,33 @@
 // import { useState, useEffect } from "react";
 
-// export default function useFetch(url : string, method : RequestInit) {
-//   const [data, setData] = useState([]);
-//   const [error, setError] = useState(null);
+// type FetchMethod = "GET" | "POST" | "PUT" | "DELETE";
+// export default function useFetch(url: string, method: FetchMethod) {
+//   const [data, setData] = useState<string | null>(null);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState<string | null>(null);
 
 //   useEffect(() => {
 //     const fetchData = async () => {
 //       try {
-//         const resp = await fetch(url, method);
-//         const res = await resp.json();
-//         if (isMounted) setData(res.data);
+//         // TODO: Replace with real API call
+//         // const response = await fetch(`/api/reviews${productId ? `?productId=${productId}` : ''}`)
+//         // const data = await response.json()
+//         // setReviews(data)
+
+//         // Using local JSON data for now
+//         const response = await fetch(url, { method });
+//         const data = await response.json();
+//         setData(data);
+//         setError(null);
 //       } catch (e) {
-//         if (isMounted) setData([]);
-//         if (isMounted) setError(e);
+//         setError(e instanceof Error ? e.message : "Lỗi khi tải dữ liệu (hook)");
+//         setData(null);
+//       }finally{
+//         setLoading(false);
 //       }
 //     };
-
-//     let isMounted = true;
 //     fetchData();
-//     return () => {
-//       isMounted = false;
-//     };
 //   }, []);
 
-//   return { data, error };
+//   return { data, error, loading };
 // }

@@ -33,13 +33,15 @@ import {
   LogIn,
 } from "lucide-react";
 import Topbar from "./ui/topbar";
-import UserContext from "../hook/context/UserContext";
+import { useAuth } from "../hook/context/AuthContext";
+
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [isDark, setIsDark] = useState(false);
-  const user = useContext(UserContext);
+  const { user } = useAuth();
+  const { logout } = useAuth();
 
   return (
     <header className="w-full sticky top-0 z-50">
@@ -108,7 +110,8 @@ export default function Navbar() {
                   <button className="p-1 rounded-full hover:bg-gray-100 cursor-pointer">
                     <Avatar className="w-8 h-8">
                       <div className="flex items-center justify-center bg-gray-800 text-white rounded-full w-full">
-                        {user ? user.name.slice(0, 2).toUpperCase() : <User size={16} />}
+                        {/* {user ? user.name.slice(0, 2).toUpperCase() : <User size={16} />} */}
+                        {user?.username?.slice(0, 2).toUpperCase() || <User size={16} />}
                       </div>
                     </Avatar>
                   </button>
@@ -117,7 +120,8 @@ export default function Navbar() {
                 <DropdownMenuContent align="end" className="w-48 ">
                   <DropdownMenuItem asChild>
                     <Link to="/account" className="flex items-center">
-                      {user ? (<> <User size={16} className="mr-2" /> {user.name} </>) : (<> <User size={16} className="mr-2" /> Tài khoản </>)}
+                      {/* {user ? (<> <User size={16} className="mr-2" /> {user.name} </>) : (<> <User size={16} className="mr-2" /> Tài khoản </>)} */}
+                      <User size={16} className="mr-2" /> {user ? user.username : 'Tài khoản'}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
@@ -127,8 +131,9 @@ export default function Navbar() {
                     <Link to="/wishlist"> <Heart size={16} />Yêu thích</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    {user ? (<Link to="/logout"> <LogOut size={16} className="mr-2"/> Đăng xuất</Link>) : (
-                            <Link to="/login"> <LogIn size={16} className="mr-2" /> Đăng nhập</Link> )}
+                    {user ? (
+                      <div className="cursor-pointer" ><LogOut size={16} className="mr-2" onClick={logout} /> Đăng xuất</div>) 
+                      : (<Link to="/login"> <LogIn size={16} className="mr-2" /> Đăng nhập</Link> )}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
