@@ -1,40 +1,34 @@
-import * as React from "react"
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    
-    DialogTitle,
-} from "./dialog"
-import { Button } from "./button"
-import { useNavigate } from 'react-router-dom'
-import { X } from 'lucide-react'
+import * as React from "react";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "./dialog";
+import { Button } from "./button";
+import { useNavigate } from "react-router-dom";
+import { X } from "lucide-react";
 
-export default function Popup( props : {imgURL : string, navigateURL : string}) {
-    const [open, setOpen] = React.useState(false)
+export default function Popup(props: { imgURL: string; navigateURL: string }) {
+    const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        const lastShown = localStorage.getItem("popup")
-        const now = Date.now()
+        const lastShown = localStorage.getItem("popup");
+        const now = Date.now();
 
         if (!lastShown || now - parseInt(lastShown, 10) > 5 * 60 * 1000) {
             const timer = setTimeout(() => {
-                setOpen(true)
-                localStorage.setItem("popup", now.toString())
-            }, 2000)
-            return () => clearTimeout(timer)
+                setOpen(true);
+                localStorage.setItem("popup", now.toString());
+            }, 2000);
+            return () => clearTimeout(timer);
         }
-    }, [])
+    }, []);
 
-    const handleClose = () => setOpen(false)
+    const handleClose = () => setOpen(false);
     const handleShopNow = () => {
-        setOpen(false)
-        navigate(`${props.navigateURL}`)
-    }
+        setOpen(false);
+        navigate(`${props.navigateURL}`);
+    };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen} modal={true} >     
+        <Dialog open={open} onOpenChange={setOpen} modal={true}>
             <DialogContent className="  max-w-2xl p-0 overflow-hidden rounded-none shadow-2xl border-0">
                 {/* Nút đóng */}
                 <button
@@ -45,11 +39,7 @@ export default function Popup( props : {imgURL : string, navigateURL : string}) 
                 </button>
 
                 {/* Banner hình ảnh */}
-                <img
-                    src={props.imgURL}
-                    alt="Sale banner"
-                    className="w-full h-60 object-cover"
-                />
+                <img src={props.imgURL} alt="Sale banner" className="w-full h-60 object-cover" />
 
                 {/* Nội dung ngắn gọn */}
                 <div className="p-6 text-center space-y-4">
@@ -60,15 +50,22 @@ export default function Popup( props : {imgURL : string, navigateURL : string}) 
                         <p className="text-gray-600">Duy nhất hôm nay – đừng bỏ lỡ!</p>
                     </DialogDescription>
                     <div className="space-y-3">
-                        <Button onClick={handleShopNow} className="w-full text-white font-bold text-lg rounded-none shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 cursor-pointer">
+                        <Button
+                            onClick={handleShopNow}
+                            className="w-full text-white font-bold text-lg rounded-none shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 cursor-pointer"
+                        >
                             🛒 Mua ngay
                         </Button>
-                        <Button variant="outline" onClick={handleClose} className="w-full  text-black  rounded-none cursor-pointer shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105">
+                        <Button
+                            variant="outline"
+                            onClick={handleClose}
+                            className="w-full  text-black  rounded-none cursor-pointer shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+                        >
                             Để sau
                         </Button>
                     </div>
                 </div>
             </DialogContent>
         </Dialog>
-    )
+    );
 }

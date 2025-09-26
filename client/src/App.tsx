@@ -7,6 +7,7 @@ import Register from './components/register'
 import NewProduct from './components/newproduct'
 import ProductDetail from './components/productdetail'
 import Cart from './components/cart'
+import Profile from './components/profile'
 
 // User Layout
 
@@ -22,6 +23,7 @@ const userRoutes = [
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
   { path: "/register", element: <Register /> },
+  { path: "/profile", element: <Profile /> },
   { path: "/*", element: <h1>404</h1> },
 ]
 

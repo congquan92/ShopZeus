@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,
@@ -40,9 +40,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [isDark, setIsDark] = useState(false);
-  const { user } = useAuth();
-  const { logout } = useAuth();
-
+  const { user, logout } = useAuth();
+  
   return (
     <header className="w-full sticky top-0 z-50">
       {/* Top bar - Contact info */}
@@ -61,7 +60,7 @@ export default function Navbar() {
                 {mobileOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
 
-              <Link to="/" className="flex items-center gap-3">
+              <a href="/" className="flex items-center gap-3">
                 <Avatar className="size-12">
                   <AvatarImage src="/logo-shop.jpg" alt="SHOP ZUES" />
                   <AvatarFallback className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold rounded">SZ</AvatarFallback>
@@ -72,7 +71,7 @@ export default function Navbar() {
                     Tự tin sống chất
                   </span>
                 </div>
-              </Link>
+              </a>
             </div>
 
             {/* Search bar */}
@@ -110,8 +109,7 @@ export default function Navbar() {
                   <button className="p-1 rounded-full hover:bg-gray-100 cursor-pointer">
                     <Avatar className="w-8 h-8">
                       <div className="flex items-center justify-center bg-gray-800 text-white rounded-full w-full">
-                        {/* {user ? user.name.slice(0, 2).toUpperCase() : <User size={16} />} */}
-                        {user?.username?.slice(0, 2).toUpperCase() || <User size={16} />}
+                        {user?.userName?.slice(0, 2).toUpperCase() || <User size={16} />}
                       </div>
                     </Avatar>
                   </button>
@@ -119,9 +117,9 @@ export default function Navbar() {
 
                 <DropdownMenuContent align="end" className="w-48 ">
                   <DropdownMenuItem asChild>
-                    <Link to="/account" className="flex items-center">
+                    <Link to="/profile" className="flex items-center">
                       {/* {user ? (<> <User size={16} className="mr-2" /> {user.name} </>) : (<> <User size={16} className="mr-2" /> Tài khoản </>)} */}
-                      <User size={16} className="mr-2" /> {user ? user.username : 'Tài khoản'}
+                      <User size={16} className="mr-2" /> {user ? user.userName : 'Tài khoản'}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
@@ -132,7 +130,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     {user ? (
-                      <div className="cursor-pointer" ><LogOut size={16} className="mr-2" onClick={logout} /> Đăng xuất</div>) 
+                      <div className="cursor-pointer flex items-center" onClick={logout}  ><LogOut size={16} className="mr-2"/> Đăng xuất</div>) 
                       : (<Link to="/login"> <LogIn size={16} className="mr-2" /> Đăng nhập</Link> )}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -402,11 +400,11 @@ export default function Navbar() {
                 <div className="flex items-center gap-3">
                   <Avatar className="w-12 h-12">
                     <div className="flex items-center justify-center bg-gray-800 text-white rounded-full w-full">
-                      {user?.name?.slice(0, 2).toUpperCase() || 'U'}
+                      {user?.userName?.slice(0, 2).toUpperCase()}
                     </div>
                   </Avatar>
                   <div className="flex flex-col">
-                    <span className="font-medium text-sm">{user?.name || 'Guest'}</span>
+                    <span className="font-medium text-sm">{user?.userName}</span>
                     <span className="text-xs text-muted-foreground">Xin chào!</span>
                   </div>
                 </div>
@@ -487,7 +485,7 @@ export default function Navbar() {
                       <span>Cửa hàng</span>
                     </Link>
                     <Link 
-                      to="/account" 
+                      to="/profile" 
                       className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
                       onClick={() => setMobileOpen(false)}
                     >
@@ -510,23 +508,20 @@ export default function Navbar() {
                       <Heart size={18} className="text-gray-500" />
                       <span>Yêu thích</span>
                     </Link>
-                    <Link 
-                      to={user ? "/logout" : "/login"}
-                      className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors"
-                      onClick={() => setMobileOpen(false)}
-                    >
+                    <div className="flex items-center gap-3 px-2 py-3 hover:bg-gray-50 rounded-md transition-colors cursor-pointer"
+                      onClick={() => setMobileOpen(false)}>
                       {user ? (
-                        <>
+                        <div className="flex items-center gap-3" onClick={logout}>
                           <LogOut size={18} className="text-gray-500" />
                           <span>Đăng xuất</span>
-                        </>
+                        </div>
                       ) : (
-                        <>
-                          <LogIn size={18} className="text-gray-500" />
+                        <Link to="/login" className="flex items-center gap-3">
+                          <LogIn size={18} className="text-gray-500" /> 
                           <span>Đăng nhập</span>
-                        </>
+                        </Link>
                       )}
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>

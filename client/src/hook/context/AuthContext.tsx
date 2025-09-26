@@ -1,61 +1,89 @@
-import { createContext, useContext, useEffect, useState } from "react"
-
-type User = {
-  username: string
-  password: string
-  role: string
-} | null
-
-type AuthContextType = {
-  user: User
-  login: (username: string, password: string) => boolean
-  logout: () => void
+import { createContext, useContext, useEffect, useState } from "react";
+interface AuthContextType {
+    user: null;
+    setUser: (u: null) => void;
+    logout: () => void;
+    refreshUser: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+const AuthContext = createContext<AuthContextType>({
+    user: null,
+    setUser: () => {},
+    logout: () => {},
+    refreshUser: () => {},
+});
 
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+    const [user, setUser] = useState<null>(null);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [accounts, setAccounts] = useState<User[]>([])
-    const [user, setUser] = useState<User>(null)
     useEffect(() => {
-        const fetchAccounts = async () => {
+        const token = localStorage.getItem("token");
+        // console.log("Token from localStorage:", token);
+        const fetchUser = async () => {
             try {
-              const response = await fetch('src/data/user.json');
-              const data = await response.json();
-              setAccounts(data);
-            } catch (error) {
-              console.error('Error fetching accounts:', error);
+                const res = await fetch("http://localhost:8080/user/me", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                if (res.ok) {
+                    const json = await res.json();
+                    setUser(json.data);
+                } else {
+                    localStorage.removeItem("token");
+                    setUser(null);
+                }
+            } catch (err) {
+                console.error("Error fetching user:", err);
+                setUser(null);
             }
         };
-        fetchAccounts();
-    },[])
-    // useEffect(() => {
-    //     console.log(accounts);
-    // },[accounts])
 
-  const login = (username: string, password: string) => {
-    const found = accounts.find(
-      (acc) => acc.username === username && acc.password === password
-    )
-    if (found) {
-      setUser(found)
-      return true
-    }
-    return false
-  }
+        fetchUser();
+    }, []);
 
-  const logout = () => setUser(null)
+    const refreshUser = () => {
+        const token = localStorage.getItem("token");
+        const fetchUser = async () => {
+            try {
+                const res = await fetch("http://localhost:8080/user/me", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                if (res.ok) {
+                    const json = await res.json();
+                    setUser(json.data);
+                } else {
+                    localStorage.removeItem("token");
+                    setUser(null);
+                }
+            } catch (err) {
+                console.error("Error fetching user:", err);
+                setUser(null);
+            }
+        };
+        fetchUser();
+    };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  )
-}
+    const logout = () => {
+        const token = localStorage.getItem("token");
+        const logoutUser = async () => {
+            try {
+                await fetch("http://localhost:8080/auth/logout", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ token }),
+                });
+            } catch (err) {
+                console.error("Error during logout:", err);
+            }
+        };
+        logoutUser();
+        localStorage.removeItem("token");
+        setUser(null);
+        window.location.href = "/login"; // load lại trang để reset state
+    };
 
-export const useAuth = () => {
-  const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error("useAuth must be used within AuthProvider")
-  return ctx
-}
+    return <AuthContext.Provider value={{ user, setUser, logout, refreshUser }}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => useContext(AuthContext);

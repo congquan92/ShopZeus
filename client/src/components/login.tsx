@@ -1,42 +1,50 @@
-import { Facebook, Globe } from "lucide-react"
-import { Button } from "./ui/button"
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardContent,
-    CardFooter,
-} from "./ui/card"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
-import { Separator } from "./ui/separator"
-import { Link, useNavigate } from "react-router-dom"
-import { useAuth } from "../hook/context/AuthContext"
-import { useState } from "react"
+import { Facebook, Globe, Loader } from "lucide-react";
+import { Button } from "./ui/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "./ui/card";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Separator } from "./ui/separator";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
-    const { login } = useAuth()
-    const navigate = useNavigate()
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        const success = login(username, password)
-        if (success) {
-            // Nếu login thành công nhưng là admin -> báo lỗi
-            if (username === "admin") {
-                setError("Tài khoản admin phải đăng nhập tại /admin/login")
-                return
-            }
-            navigate("/") // chuyển về home
-        } else {
+        e.preventDefault();
+        setLoading(true);
+        setMessage("");
 
-            setError("Sai tài khoản hoặc mật khẩu")
-            console.log(username, password)
-        }
-    }
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/auth/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    setMessage("Đăng Nhập Thành Công");
+                    console.log("Login successful:", data);
+                    localStorage.setItem("token", data.token);
+                    window.location.href = "/"; // load lại trang để lấy user mới
+                } else {
+                    setMessage("Đăng Nhập Thất Bại");
+                }
+            } catch (error) {
+                setMessage("Lỗi kết nối server");
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    };
 
     return (
         <div className="flex items-center justify-center p-20">
@@ -59,7 +67,7 @@ export default function Login() {
                     <Separator />
 
                     {/* Form login */}
-                    {error && <p className="text-red-500 text-sm">{error}</p>}
+                    {message && <p className="text-red-500 text-sm">{message}</p>}
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="grid gap-2">
                             <Label htmlFor="username">Tên đăng nhập</Label>
@@ -69,6 +77,7 @@ export default function Login() {
                                 type="text"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
+                                disabled={loading}
                             />
                         </div>
                         <div className="grid gap-2">
@@ -79,10 +88,17 @@ export default function Login() {
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                disabled={loading}
                             />
                         </div>
-                        <Button type="submit" className="w-full cursor-pointer">
-                            Đăng Nhập
+                        <Button type="submit" className="w-full cursor-pointer" disabled={loading}>
+                            {loading ? (
+                                <>
+                                    <Loader className="w-4 h-4 animate-spin mr-2" /> Đang xử lý...
+                                </>
+                            ) : (
+                                "Đăng Nhập"
+                            )}
                         </Button>
                     </form>
                 </CardContent>
@@ -97,5 +113,5 @@ export default function Login() {
                 </CardFooter>
             </Card>
         </div>
-    )
+    );
 }
