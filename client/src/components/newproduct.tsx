@@ -1,64 +1,55 @@
-import { useEffect, useState } from "react"
-import { SlashIcon, Heart } from "lucide-react"
-import { Link } from "react-router-dom"
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbSeparator,
-} from "./ui/breadcrumb"
-import TitleCompact from "./ui/title_compact"
-import { Card, CardContent, CardFooter } from "./ui/card"
-import { Button } from "./ui/button"
-import { Badge } from "./ui/badge"
-import Loader from "./ui/loader"
+import { useEffect, useState } from "react";
+import { SlashIcon, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "./ui/breadcrumb";
+import TitleCompact from "./ui/title_compact";
+import { Card, CardContent, CardFooter } from "./ui/card";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import Loader from "./ui/loader";
 interface Product {
-    id: number
-    name: string
-    price: string | number
-    originalPrice: string | number
-    discount: string
-    img: string
-    rating: number
-    sold: number
-    isNew: boolean
+    id: number;
+    name: string;
+    price: string | number;
+    originalPrice: string | number;
+    discount: string;
+    img: string;
+    rating: number;
+    sold: number;
+    isNew: boolean;
 }
 
 export default function NewProduct() {
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
     const [data, setData] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
-    const pageSize = 18
+    const pageSize = 18;
 
-    const totalPages = Math.ceil(data.length / pageSize)
+    const totalPages = Math.ceil(data.length / pageSize);
 
     // 👉 Cắt sản phẩm theo trang
-    const products = data.slice(
-        (currentPage - 1) * pageSize,
-        currentPage * pageSize
-    )
+    const products = data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     useEffect(() => {
-       const fetchData = async () => {
-         try {
-           const response = await fetch('/src/data/newproduct.json');
-           const json = await response.json();
-           setData(json);
-           // console.log(json);
-         } catch (error) {
-            console.error('Error fetching data:', error);
-         } finally {
-           setLoading(false);
-         }
-       };
-       fetchData();
-     }, []);
+        const fetchData = async () => {
+            try {
+                const response = await fetch("/src/data/newproduct.json");
+                const json = await response.json();
+                setData(json);
+                // console.log(json);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
-     if (loading) {
+    if (loading) {
         return <Loader text="Đang tải sản phẩm mới..." subtext="Vui lòng chờ trong giây lát" />;
-     }
+    }
     return (
         <div className="container mx-auto p-2 space-y-4">
             {/* Breadcrumb */}
@@ -71,41 +62,28 @@ export default function NewProduct() {
                         <SlashIcon />
                     </BreadcrumbSeparator>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href="/newproduct">Sản phẩm mới</BreadcrumbLink>
+                        <BreadcrumbLink href="/new">Sản phẩm mới</BreadcrumbLink>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
 
             {/* Title */}
-            <TitleCompact title="Sản Phẩm Mới" subtitle="Khám Phá Những Sản Phẩm Mới Nhất Của Chúng Tôi"  />
+            <TitleCompact title="Sản Phẩm Mới" subtitle="Khám Phá Những Sản Phẩm Mới Nhất Của Chúng Tôi" />
 
             {/* Danh sách sản phẩm */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mt-6">
                 {products.map((product) => (
                     <Card key={product.id} className="group p-0 shadow-none rounded-none cursor-pointer gap-0">
                         <CardContent className="relative p-2">
-                            <Badge className="absolute top-3 left-3 z-10 bg-amber-300 text-white text-xs px-1.5 py-0.5 rounded-md font-medium">
-                                {product.discount}
-                            </Badge>
+                            <Badge className="absolute top-3 left-3 z-10 bg-amber-300 text-white text-xs px-1.5 py-0.5 rounded-md font-medium">{product.discount}</Badge>
                             <Link to={`/product/${product.id}`}>
-                                <img
-                                    src={product.img}
-                                    alt={product.name}
-                                    className="object-cover w-full max-h-[250px] transition-transform duration-500 group-hover:scale-105"
-                                    loading="lazy"
-                                />
+                                <img src={product.img} alt={product.name} className="object-cover w-full max-h-[250px] transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                             </Link>
                             <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                                <Button
-                                    size="sm"
-                                    variant="secondary"
-                                    className="bg-white/90 text-gray-900 hover:bg-white text-xs px-3 py-1.5 rounded-none cursor-pointer backdrop-blur-sm">
+                                <Button size="sm" variant="secondary" className="bg-white/90 text-gray-900 hover:bg-white text-xs px-3 py-1.5 rounded-none cursor-pointer backdrop-blur-sm">
                                     <Link to={`/product/${product.id}`}>Xem nhanh</Link>
                                 </Button>
-                                <Button
-                                    size="sm"
-                                    variant="secondary"
-                                    className="bg-white/90 text-gray-900 hover:bg-white text-xs px-3 py-1.5 rounded-none cursor-pointer backdrop-blur-sm mx-2">
+                                <Button size="sm" variant="secondary" className="bg-white/90 text-gray-900 hover:bg-white text-xs px-3 py-1.5 rounded-none cursor-pointer backdrop-blur-sm mx-2">
                                     <Heart className="w-3 h-3 mr-1" /> Yêu thích
                                 </Button>
                             </div>
@@ -113,31 +91,22 @@ export default function NewProduct() {
                         <CardFooter className="flex flex-col gap-2 p-3 items-start">
                             <div className="flex flex-col gap-1">
                                 <Link to={`/product/${product.id}`}>
-                                    <span className="text-sm font-medium text-gray-700 line-clamp-2 hover:text-blue-600">
-                                        {product.name}
-                                    </span>
+                                    <span className="text-sm font-medium text-gray-700 line-clamp-2 hover:text-blue-600">{product.name}</span>
                                 </Link>
-                                <Badge className="bg-green-100 text-green-800 text-xs px-1.5 py-0.5 rounded-none font-medium">
-                                    {product.sold} Đã Bán
-                                </Badge>
+                                <Badge className="bg-green-100 text-green-800 text-xs px-1.5 py-0.5 rounded-none font-medium">{product.sold} Đã Bán</Badge>
                             </div>
                             <div className="flex items-center justify-between gap-2 w-full">
                                 <div className="flex flex-col">
-                                    <span className="text-gray-500 text-xs line-through">
-                                        {product.originalPrice}
-                                    </span>
-                                    <span className="text-lg font-semibold text-gray-900">
-                                        {product.price}
-                                    </span>
+                                    <span className="text-gray-500 text-xs line-through">{product.originalPrice}</span>
+                                    <span className="text-lg font-semibold text-gray-900">{product.price}</span>
                                 </div>
                                 <Badge className="bg-red-600 text-amber-50 text-xs px-1.5 py-0.5 rounded-md font-medium">
                                     {(() => {
-                                        const original = parseFloat(String(product.originalPrice).replace(/[^0-9]/g, ''));
-                                        const price = parseFloat(String(product.price).replace(/[^0-9]/g, ''));
-                                        return original && price
-                                            ? Math.floor(((original - price) / original) * 100)
-                                            : 0;
-                                    })()}%
+                                        const original = parseFloat(String(product.originalPrice).replace(/[^0-9]/g, ""));
+                                        const price = parseFloat(String(product.price).replace(/[^0-9]/g, ""));
+                                        return original && price ? Math.floor(((original - price) / original) * 100) : 0;
+                                    })()}
+                                    %
                                 </Badge>
                             </div>
                         </CardFooter>
@@ -159,11 +128,7 @@ export default function NewProduct() {
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                         <button
                             key={page}
-                            className={`flex h-9 w-9 items-center justify-center text-sm transition-colors ${
-                                page === currentPage 
-                                    ? 'bg-primary text-primary-foreground border border-input' 
-                                    : 'hover:bg-accent hover:text-accent-foreground'
-                            }`}
+                            className={`flex h-9 w-9 items-center justify-center text-sm transition-colors ${page === currentPage ? "bg-primary text-primary-foreground border border-input" : "hover:bg-accent hover:text-accent-foreground"}`}
                             onClick={() => setCurrentPage(page)}
                         >
                             {page}
@@ -180,5 +145,5 @@ export default function NewProduct() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         // console.log("Token from localStorage:", token);
         const fetchUser = async () => {
             try {
-                const res = await fetch("http://localhost:8080/user/me", {
+                const res = await fetch(`${import.meta.env.VITE_LOCAL_API}/user/me`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 if (res.ok) {
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const token = localStorage.getItem("token");
         const fetchUser = async () => {
             try {
-                const res = await fetch("http://localhost:8080/user/me", {
+                const res = await fetch(`${import.meta.env.VITE_LOCAL_API}/user/me`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 if (res.ok) {
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const token = localStorage.getItem("token");
         const logoutUser = async () => {
             try {
-                await fetch("http://localhost:8080/auth/logout", {
+                await fetch(`${import.meta.env.VITE_LOCAL_API}/auth/logout`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

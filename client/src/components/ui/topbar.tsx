@@ -1,4 +1,4 @@
-import {  MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Topbar() {
@@ -17,11 +17,15 @@ export default function Topbar() {
                         </span>
                     </div>
                     <div className="flex items-center gap-4">
-                        <Link to="/tracking" className="hover:underline">Tra cứu đơn hàng</Link>
-                        <Link to="/size-guide" className="hover:underline">Hướng dẫn chọn size</Link>
+                        <Link to="/tracking" className="hover:underline">
+                            Tra cứu đơn hàng
+                        </Link>
+                        <Link to="/cloth-size" className="hover:underline">
+                            Hướng dẫn chọn size
+                        </Link>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

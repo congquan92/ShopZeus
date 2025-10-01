@@ -67,6 +67,7 @@ export default function Address() {
 
         setAddresses((prev) => [...prev, newAddress]);
         setIsAddingAddress(false);
+        console.log(addresses);
 
         // reset form
         setName("");
@@ -191,12 +192,7 @@ export default function Address() {
                                                     Đặt mặc định
                                                 </Button>
                                             )}
-                                            <Button
-                                                variant="outline"
-                                                size="icon"
-                                                className="text-red-500 border-red-300 hover:bg-red-50"
-                                                onClick={() => handleDeleteAddress(addr.id)}
-                                            >
+                                            <Button variant="outline" size="icon" className="text-red-500 border-red-300 hover:bg-red-50" onClick={() => handleDeleteAddress(addr.id)}>
                                                 <Trash2 className="w-4 h-4" />
                                             </Button>
                                         </div>
