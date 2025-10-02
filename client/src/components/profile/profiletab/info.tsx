@@ -32,7 +32,7 @@ const TIER_BOUNDS: Record<string, { min: number; max?: number }> = {
     Silver: { min: 1000, max: 2999 },
     Gold: { min: 3000, max: 6999 },
     Platinum: { min: 7000, max: 14999 },
-    Diamond: { min: 1500 },
+    Diamond: { min: 15000 },
 };
 
 const TIERS = ["Bronze", "Silver", "Gold", "Platinum", "Diamond"];

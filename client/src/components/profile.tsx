@@ -3,8 +3,7 @@ import { SlashIcon, User, Package, Heart, Bell, Shield } from "lucide-react";
 
 import TitleCompact from "./ui/title_compact";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "./ui/breadcrumb";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
 import ProfileTab from "./profile/profiletab/profiletab";
 import SecurityTab from "./profile/securitytap";

@@ -53,11 +53,7 @@ export default function Popup({ imgURL, navigateURL, delayMs = 2000, cooldownMin
                 className="max-w-[90vw] sm:max-w-xl lg:max-w-2xl p-0 overflow-hidden rounded-none shadow-2xl border-0"
             >
                 {/* Nút đóng – tăng hit area trên mobile */}
-                <button
-                    onClick={handleClose}
-                    className="absolute top-3 right-3 z-10 rounded-full p-1.5 bg-black/40 hover:bg-black/55 transition-transform duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/70"
-                    aria-label="Đóng"
-                >
+                <button onClick={handleClose} className="absolute top-3 right-3 z-10  p-1.5 hover:scale-110 outline-none cursor-pointer" aria-label="Đóng">
                     <X className="size-5 text-white" />
                 </button>
 

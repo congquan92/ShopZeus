@@ -117,7 +117,7 @@ export default function Navbar() {
 
                             <a href="/" className="flex items-center gap-3">
                                 <Avatar className="size-12">
-                                    <AvatarImage src="/logo-shop.jpg" alt="SHOP ZUES" />
+                                    <AvatarImage src="/logo-shop.jpg" className="object-cover" alt="SHOP ZUES" />
                                     <AvatarFallback className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold rounded">SZ</AvatarFallback>
                                 </Avatar>
                                 <div className="flex flex-col">
@@ -158,7 +158,7 @@ export default function Navbar() {
                                 <DropdownMenuTrigger asChild>
                                     <button className="p-1 rounded-full hover:bg-gray-100 cursor-pointer">
                                         <Avatar className="w-8 h-8">
-                                            <AvatarImage src={user?.avatar || <User size={16} />} alt="User Avatar" />
+                                            <AvatarImage src={user?.avatar || <User size={16} />} alt="User Avatar" className="object-cover" />
                                             <AvatarFallback className="w-8 h-8 bg-gray-800 text-white flex items-center justify-center rounded-full">{user?.userName?.slice(0, 2).toUpperCase() || <User size={16} />}</AvatarFallback>
                                         </Avatar>
 
@@ -269,7 +269,7 @@ export default function Navbar() {
                         <div className="flex items-center justify-between p-4 border-b">
                             <div className="flex items-center gap-3">
                                 <Avatar className="size-10">
-                                    <AvatarImage src="/logo-shop.jpg" alt="SHOP ZUES" />
+                                    <AvatarImage src="/logo-shop.jpg" alt="SHOP ZUES" className="object-cover" />
                                     <AvatarFallback className="w-10 h-10 bg-black text-white flex items-center justify-center font-bold rounded">SZ</AvatarFallback>
                                 </Avatar>
                                 <div className="flex flex-col">

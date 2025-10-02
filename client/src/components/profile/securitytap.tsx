@@ -1,8 +1,101 @@
-import { Shield } from "lucide-react";
+import { Shield, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "../ui/dialog";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function SecurityTab() {
+    const [open, setOpen] = useState(false);
+
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const [showOld, setShowOld] = useState(false);
+    const [showNew, setShowNew] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
+
+    const [loading, setLoading] = useState(false);
+
+    const resetForm = () => {
+        setOldPassword("");
+        setNewPassword("");
+        setConfirmPassword("");
+        setShowOld(false);
+        setShowNew(false);
+        setShowConfirm(false);
+        setLoading(false);
+    };
+
+    const handleChangePassword = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (loading) return;
+
+        // // Basic client-side validation
+        // if (!oldPassword) {
+        //     toast.error("Vui lòng nhập mật khẩu cũ.", { position: "top-center" });
+        //     return;
+        // }
+        // if (newPassword.length < 8) {
+        //     toast.error("Mật khẩu mới phải từ 8 ký tự trở lên.", {
+        //         position: "top-center",
+        //     });
+        //     return;
+        // }
+        // if (newPassword === oldPassword) {
+        //     toast.error("Mật khẩu mới không được trùng mật khẩu cũ.", {
+        //         position: "top-center",
+        //     });
+        //     return;
+        // }
+        // if (newPassword !== confirmPassword) {
+        //     toast.error("Mật khẩu mới và xác nhận không trùng khớp.", {
+        //         position: "top-center",
+        //     });
+        //     return;
+        // }
+
+        try {
+            setLoading(true);
+            const payload = {
+                oldPassword,
+                password: newPassword,
+                confirmPassword,
+            };
+
+            const res = await fetch(`${import.meta.env.VITE_LOCAL_API}/user/change-password`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+                body: JSON.stringify(payload),
+            });
+
+            const data = await res.json();
+            console.log(data);
+            if (data.status === 200) {
+                toast.success("Thay đổi mật khẩu thành công.", {
+                    position: "top-center",
+                });
+                resetForm();
+                setOpen(false); // đóng dialog khi thành công
+            } else if (data.status === 111) {
+                toast.error("Mật khẩu cũ không chính xác.", { position: "top-center" });
+            } else {
+                toast.error("Đã có lỗi xảy ra.", { position: "top-center" });
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error("Lỗi mạng hoặc server.", { position: "top-center" });
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div>
             <Card>
@@ -12,16 +105,62 @@ export default function SecurityTab() {
                         Bảo Mật Tài Khoản
                     </CardTitle>
                 </CardHeader>
+
                 <CardContent className="space-y-6">
                     <div className="space-y-4">
+                        {/* Đổi mật khẩu */}
                         <div className="flex justify-between items-center p-4 border rounded-lg">
                             <div>
                                 <h4 className="font-medium">Đổi mật khẩu</h4>
                                 <p className="text-sm text-gray-600">Cập nhật mật khẩu để bảo mật tài khoản</p>
                             </div>
-                            <Button variant="outline">Thay đổi</Button>
+
+                            <Dialog
+                                open={open}
+                                onOpenChange={(isOpen) => {
+                                    setOpen(isOpen);
+                                    if (!isOpen) resetForm();
+                                }}
+                            >
+                                <DialogTrigger asChild>
+                                    <Button variant="outline">Thay đổi</Button>
+                                </DialogTrigger>
+                                <DialogContent className="sm:max-w-[400px]">
+                                    <DialogHeader>
+                                        <DialogTitle>Đổi mật khẩu</DialogTitle> <DialogDescription>Nhập mật khẩu cũ và mật khẩu mới để tiếp tục.</DialogDescription>
+                                    </DialogHeader>
+                                    <div className="grid gap-4 py-2">
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="oldPassword">Mật khẩu cũ</Label> <Input id="oldPassword" type="password" placeholder="Nhập mật khẩu hiện tại" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
+                                        </div>
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="newPassword">Mật khẩu mới</Label> <Input id="newPassword" type="password" placeholder="Nhập mật khẩu mới" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                                        </div>
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="confirmPassword">Xác nhận mật khẩu mới</Label>
+                                            <Input id="confirmPassword" type="password" placeholder="Nhập lại mật khẩu mới" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <DialogFooter>
+                                        <Button type="submit" onClick={handleChangePassword}>
+                                            Lưu thay đổi
+                                        </Button>
+                                        <Button
+                                            type="submit"
+                                            onClick={() => {
+                                                setOpen(false);
+                                                resetForm();
+                                            }}
+                                            variant="outline"
+                                        >
+                                            Hủy
+                                        </Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
                         </div>
 
+                        {/* Xác thực 2 bước */}
                         <div className="flex justify-between items-center p-4 border rounded-lg">
                             <div>
                                 <h4 className="font-medium">Xác thực 2 bước</h4>
@@ -30,6 +169,7 @@ export default function SecurityTab() {
                             <Button variant="outline">Bật</Button>
                         </div>
 
+                        {/* Thiết bị đăng nhập */}
                         <div className="flex justify-between items-center p-4 border rounded-lg">
                             <div>
                                 <h4 className="font-medium">Thiết bị đăng nhập</h4>
