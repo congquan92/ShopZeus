@@ -1,8 +1,8 @@
-import { Package, Badge } from 'lucide-react'
+import { Package, Badge } from "lucide-react";
 
-import { Button } from '../ui/button'
-import { Card, CardHeader, CardTitle, CardContent } from '../ui/card'
-import { useState } from 'react';
+import { Button } from "../components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
+import { useState } from "react";
 interface Order {
     id: number;
     orderNumber: string;
@@ -17,8 +17,7 @@ interface Order {
         quantity: number;
     }>;
 }
-export default function OrderTab() {
-
+export default function Orders() {
     //sample data
     const [orders] = useState<Order[]>([
         {
@@ -33,9 +32,9 @@ export default function OrderTab() {
                     name: "iPhone 15 Pro",
                     image: "https://cdn.hstatic.net/products/1000253775/160_ao_polo_241-1_4516b05b83f64514af9e912b42105ecd_large.jpg",
                     price: 800000,
-                    quantity: 1
-                }
-            ]
+                    quantity: 1,
+                },
+            ],
         },
         {
             id: 2,
@@ -49,26 +48,24 @@ export default function OrderTab() {
                     name: "Samsung Galaxy Watch",
                     image: "https://cdn.hstatic.net/products/1000253775/160_ao_polo_241-1_4516b05b83f64514af9e912b42105ecd_large.jpg",
                     price: 400000,
-                    quantity: 1
-                }
-            ]
-        }
+                    quantity: 1,
+                },
+            ],
+        },
     ]);
 
-
-
-    const getStatusBadge = (status: Order['status']) => {
+    const getStatusBadge = (status: Order["status"]) => {
         const statusConfig = {
             pending: { variant: "outline" as const, text: "Chờ xác nhận" },
             processing: { variant: "secondary" as const, text: "Đang xử lý" },
             shipped: { variant: "default" as const, text: "Đang giao" },
             delivered: { variant: "secondary" as const, text: "Đã giao" },
-            cancelled: { variant: "destructive" as const, text: "Đã hủy" }
+            cancelled: { variant: "destructive" as const, text: "Đã hủy" },
         };
         return statusConfig[status];
     };
     return (
-        <div>
+        <div className="container mx-auto p-4">
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -88,24 +85,18 @@ export default function OrderTab() {
                                         </div>
                                         <div className="text-right">
                                             <Badge {...getStatusBadge(order.status)} />
-                                            <p className="text-lg font-semibold mt-1">
-                                                {order.total.toLocaleString('vi-VN')}đ
-                                            </p>
+                                            <p className="text-lg font-semibold mt-1">{order.total.toLocaleString("vi-VN")}đ</p>
                                         </div>
                                     </div>
 
                                     <div className="space-y-2">
                                         {order.items.map((item) => (
                                             <div key={item.id} className="flex items-center gap-3 p-2 bg-gray-50 rounded">
-                                                <img
-                                                    src={item.image}
-                                                    alt={item.name}
-                                                    className="w-12 h-12 object-cover rounded"
-                                                />
+                                                <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
                                                 <div className="flex-1">
                                                     <h5 className="font-medium">{item.name}</h5>
                                                     <p className="text-sm text-gray-600">
-                                                        Số lượng: {item.quantity} | Giá: {item.price.toLocaleString('vi-VN')}đ
+                                                        Số lượng: {item.quantity} | Giá: {item.price.toLocaleString("vi-VN")}đ
                                                     </p>
                                                 </div>
                                             </div>
@@ -116,12 +107,12 @@ export default function OrderTab() {
                                         <Button variant="outline" size="sm">
                                             Xem chi tiết
                                         </Button>
-                                        {order.status === 'delivered' && (
+                                        {order.status === "delivered" && (
                                             <Button variant="outline" size="sm">
                                                 Đánh giá
                                             </Button>
                                         )}
-                                        {order.status === 'pending' && (
+                                        {order.status === "pending" && (
                                             <Button variant="destructive" size="sm">
                                                 Hủy đơn
                                             </Button>
@@ -134,5 +125,5 @@ export default function OrderTab() {
                 </CardContent>
             </Card>
         </div>
-    )
+    );
 }

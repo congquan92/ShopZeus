@@ -17,28 +17,18 @@ interface OrderSummaryProps {
     formatPrice: (price: number) => string;
 }
 
-export function OrderSummary({
-    subtotal,
-    shippingFee,
-    discount,
-    total,
-    couponCode,
-    setCouponCode,
-    applyCoupon,
-    onCheckout,
-    formatPrice,
-}: OrderSummaryProps) {
+export function OrderSummary({ subtotal, shippingFee, discount, total, couponCode, setCouponCode, applyCoupon, onCheckout, formatPrice }: OrderSummaryProps) {
     return (
-        <Card className="p-0 rounded-none shadow-sm sticky top-4">
-            <CardContent className="p-6 space-y-4">
-                <h3 className="text-lg font-semibold">Tổng kết đơn hàng</h3>
-                <div className="space-y-2">
+        <Card className="p-0 rounded-none shadow-sm lg:sticky lg:top-4">
+            <CardContent className="p-4 sm:p-6 space-y-4">
+                <h3 className="text-base sm:text-lg font-semibold">Tổng kết đơn hàng</h3>
+                <div className="space-y-3">
                     <label className="text-sm font-medium flex items-center gap-2">
                         <Tag size={16} /> Mã giảm giá
                     </label>
-                    <div className="flex gap-2">
-                        <Input placeholder="Nhập mã giảm giá" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} className="flex-1" />
-                        <Button onClick={applyCoupon} variant="outline" size="sm">
+                    <div className="flex flex-col sm:flex-row gap-2">
+                        <Input placeholder="Nhập mã giảm giá" value={couponCode} onChange={(e) => setCouponCode(e.target.value)} className="flex-1 text-sm" />
+                        <Button onClick={applyCoupon} variant="outline" size="sm" className="w-full sm:w-auto">
                             Áp dụng
                         </Button>
                     </div>
@@ -61,15 +51,15 @@ export function OrderSummary({
                         </div>
                     )}
                     <Separator />
-                    <div className="flex justify-between text-lg font-semibold">
+                    <div className="flex justify-between text-base sm:text-lg font-semibold">
                         <span>Tổng cộng:</span>
                         <span className="text-red-600">{formatPrice(total)}</span>
                     </div>
                 </div>
             </CardContent>
-            <CardFooter className="p-6 pt-0 space-y-3">
-                <Button className="w-full h-12 text-base font-medium" size="lg" onClick={onCheckout}>
-                    <CreditCard className="mr-2" />
+            <CardFooter className="p-4 sm:p-6 pt-0 space-y-3">
+                <Button className="w-full h-10 sm:h-12 text-sm sm:text-base font-medium" size="lg" onClick={onCheckout}>
+                    <CreditCard className="mr-2 h-4 w-4" />
                     Thanh toán ngay
                 </Button>
             </CardFooter>

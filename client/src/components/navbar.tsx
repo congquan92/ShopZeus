@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, navigationMenuTriggerStyle } from "./ui/navigation-menu";
-import { Menu, X, Search, ShoppingCart, User, Moon, Sun, MapPin, Store, Heart, LogOut, LogIn } from "lucide-react";
+import { Menu, X, Search, ShoppingCart, User, MapPin, Store, Heart, LogOut, LogIn, Bell } from "lucide-react";
 import Topbar from "./ui/topbar";
 import { useAuth } from "../hook/context/AuthContext";
 
@@ -98,7 +98,6 @@ const userActionLinks = [
 export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [search, setSearch] = useState("");
-    const [isDark, setIsDark] = useState(false);
     const { user, logout } = useAuth();
 
     return (
@@ -200,11 +199,16 @@ export default function Navbar() {
                                 </DropdownMenuContent>
                             </DropdownMenu>
 
-                            {/* Theme toggle */}
+                            {/*Notifications */}
                             <div className="flex items-center">
-                                <button className="p-2 rounded-md hover:bg-gray-100" onClick={() => setIsDark(!isDark)}>
-                                    {isDark ? <Sun size={16} /> : <Moon size={16} />}
-                                </button>
+                                <Link to="/notifications" className="p-2 rounded-md hover:bg-gray-100 relative">
+                                    <Bell size={20} />
+                                    <div className="absolute -top-2 -right-1">
+                                        <Badge variant="destructive" className="text-xs px-1 min-w-[16px] h-5">
+                                            5
+                                        </Badge>
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -364,10 +368,9 @@ export default function Navbar() {
                         {/* Footer */}
                         <div className="p-4 border-t bg-gray-50">
                             <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
-                                <button onClick={() => setIsDark(!isDark)} className="flex items-center gap-2 hover:text-gray-700 transition-colors">
-                                    {isDark ? <Sun size={16} /> : <Moon size={16} />}
-                                    <span>{isDark ? "Sáng" : "Tối"}</span>
-                                </button>
+                                <Link to="notifications" className="flex items-center gap-1 hover:underline">
+                                    <Bell size={16} /> Thông báo
+                                </Link>
                             </div>
                         </div>
                     </div>

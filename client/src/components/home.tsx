@@ -45,8 +45,10 @@ export default function Home() {
             <Popup
                 imgURL="https://cdn.hstatic.net/files/1000253775/file/banner_kv-02__custom__e3ecf48ea75a4f05b9860c37c4bb7982.jpg"
                 navigateURL="/sale"
+                delayMs={2000} // tuỳ chọn
+                cooldownMinutes={10} // tuỳ chọn
+                storageKey="popup-sale" // tuỳ chọn
             />
-
             <div className="py-2 mt-3">
                 <BannerCarousel />
             </div>

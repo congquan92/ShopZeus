@@ -12,6 +12,7 @@ import { Badge } from "../../ui/badge";
 import { Progress } from "../../ui/progress";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "../../ui/select";
 import Loader from "../../ui/loader";
+import { Link } from "react-router";
 
 interface UserProfile {
     id: number;
@@ -31,10 +32,10 @@ const TIER_BOUNDS: Record<string, { min: number; max?: number }> = {
     Silver: { min: 1000, max: 2999 },
     Gold: { min: 3000, max: 6999 },
     Platinum: { min: 7000, max: 14999 },
-    Diamond: { min: 15000 },
+    Diamond: { min: 1500 },
 };
 
-const TIERS = ["Bronze", "Silver", "Gold", "Platinum", "Diamond"] as const;
+const TIERS = ["Bronze", "Silver", "Gold", "Platinum", "Diamond"];
 
 export default function Info() {
     const { user, refreshUser } = useAuth();
@@ -54,12 +55,12 @@ export default function Info() {
                 id: user.id,
                 userName: user.userName,
                 fullName: user.fullName || "",
-                gender: (user.gender as UserProfile["gender"]) || "BOTH",
+                gender: user.gender || "",
                 dateOfBirth: user.dateOfBirth || "",
                 email: user.email || "",
                 phone: user.phone || "",
-                userRank: user.userRank || "Bronze",
-                avatar: user.avatar || "https://i.pinimg.com/736x/66/18/d6/6618d62c3a835e38e9dfff3cc3e80dae.jpg",
+                userRank: user.userRank || "",
+                avatar: user.avatar || "",
                 totalSpent: user.totalSpent || 0,
             });
             // reset file preview khi đồng bộ từ server
@@ -203,7 +204,14 @@ export default function Info() {
     };
 
     if (!user) {
-        return <div className="flex items-center justify-center mt-3">Vui lòng đăng nhập để xem thông tin cá nhân</div>;
+        return (
+            <div className="flex flex-col items-center justify-center">
+                <div className=" mt-3">Vui lòng đăng nhập để xem thông tin cá nhân</div>
+                <Button className="mt-3 p-3" size={"sm"}>
+                    <Link to="/login">Đăng nhập</Link>
+                </Button>
+            </div>
+        );
     }
 
     const disabledInput = !isEditing ? "bg-muted" : "";
@@ -336,8 +344,8 @@ export default function Info() {
                             {/* Khung rank từng bậc */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                                 {TIERS.map((tier) => {
-                                    const isActive = (profile.userRank || "Bronze") === tier;
-                                    const b = TIER_BOUNDS[tier] || { min: 0 };
+                                    const isActive = profile.userRank.charAt(0) + profile.userRank.slice(1).toLowerCase() === tier;
+                                    const b = TIER_BOUNDS[tier];
                                     const label = b.max != null ? `${b.min}–${b.max}` : `${b.min}+`;
                                     return (
                                         <div key={tier} className={["rounded-xl border p-3", isActive ? "border-primary bg-muted/60" : "border-border bg-background"].join(" ")}>
@@ -377,12 +385,12 @@ export default function Info() {
                                                 id: user.id,
                                                 userName: user.userName,
                                                 fullName: user.fullName || "",
-                                                gender: (user.gender as UserProfile["gender"]) || "BOTH",
+                                                gender: user.gender || "",
                                                 dateOfBirth: user.dateOfBirth || "",
                                                 email: user.email || "",
                                                 phone: user.phone || "",
-                                                userRank: user.userRank || "Bronze",
-                                                avatar: user.avatar || "https://i.pinimg.com/736x/66/18/d6/6618d62c3a835e38e9dfff3cc3e80dae.jpg",
+                                                userRank: user.userRank || "",
+                                                avatar: user.avatar || "",
                                                 rankPoints: user.rankPoints || 0,
                                             }));
                                             setAvatarFile(null);

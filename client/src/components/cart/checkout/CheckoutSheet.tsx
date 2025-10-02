@@ -186,34 +186,34 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
 
     return (
         <Sheet open={open} onOpenChange={onOpenChange}>
-            {/* cao full viewport + chia cột */}
-            <SheetContent side="right" className="w-full sm:max-w-lg p-0 h-svh flex flex-col">
+            {/* Responsive width và height */}
+            <SheetContent side="right" className="w-full sm:max-w-md lg:max-w-lg p-0 h-svh flex flex-col">
                 {/* Vùng CUỘN */}
-                <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
                     <SheetHeader>
-                        <SheetTitle>Thanh toán</SheetTitle>
-                        <SheetDescription>Điền thông tin giao hàng và xác nhận phương thức thanh toán.</SheetDescription>
+                        <SheetTitle className="text-lg sm:text-xl">Thanh toán</SheetTitle>
+                        <SheetDescription className="text-sm">Điền thông tin giao hàng và xác nhận phương thức thanh toán.</SheetDescription>
                     </SheetHeader>
 
                     {/* GÁN id cho form để submit từ footer */}
-                    <form id="checkout-form" className="space-y-6" onSubmit={handleSubmit} noValidate>
+                    <form id="checkout-form" className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
                         {/* --- Contact --- */}
-                        <div className="space-y-4">
-                            <h4 className="text-base font-semibold">Thông tin liên hệ</h4>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="space-y-3 sm:space-y-4">
+                            <h4 className="text-sm sm:text-base font-semibold">Thông tin liên hệ</h4>
+                            <div className="grid grid-cols-1 gap-3">
                                 <div>
-                                    <label className="text-sm font-medium">Họ và tên</label>
-                                    <Input placeholder="Nguyễn Văn A" value={data.fullName} onChange={handleChange("fullName")} required />
+                                    <label className="text-xs sm:text-sm font-medium block mb-1">Họ và tên</label>
+                                    <Input placeholder="Nguyễn Văn A" value={data.fullName} onChange={handleChange("fullName")} required className="h-9 sm:h-10 text-sm" />
                                     {errors.fullName && <p className="text-xs text-red-600 mt-1">{errors.fullName}</p>}
                                 </div>
                                 <div>
-                                    <label className="text-sm font-medium">Số điện thoại</label>
-                                    <Input placeholder="0xxxxxxxxx hoặc +84" value={data.phone} onChange={handleChange("phone")} required />
+                                    <label className="text-xs sm:text-sm font-medium block mb-1">Số điện thoại</label>
+                                    <Input placeholder="0xxxxxxxxx hoặc +84" value={data.phone} onChange={handleChange("phone")} required className="h-9 sm:h-10 text-sm" />
                                     {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone}</p>}
                                 </div>
-                                <div className="sm:col-span-2">
-                                    <label className="text-sm font-medium">Email (không bắt buộc)</label>
-                                    <Input placeholder="ban@vidu.com" value={data.email} onChange={handleChange("email")} />
+                                <div>
+                                    <label className="text-xs sm:text-sm font-medium block mb-1">Email (không bắt buộc)</label>
+                                    <Input placeholder="ban@vidu.com" value={data.email} onChange={handleChange("email")} className="h-9 sm:h-10 text-sm" />
                                     {errors.email && <p className="text-xs text-red-600 mt-1">{errors.email}</p>}
                                 </div>
                             </div>
@@ -222,25 +222,25 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
                         <Separator />
 
                         {/* --- Shipping --- */}
-                        <div className="space-y-6">
-                            <h4 className="text-base font-semibold">Địa chỉ giao hàng</h4>
+                        <div className="space-y-4 sm:space-y-6">
+                            <h4 className="text-sm sm:text-base font-semibold">Địa chỉ giao hàng</h4>
                             <div>
-                                <label className="text-sm font-medium">Địa chỉ</label>
-                                <Input placeholder="Số nhà, đường…" value={data.address} onChange={handleChange("address")} required />
+                                <label className="text-xs sm:text-sm font-medium block mb-1">Địa chỉ</label>
+                                <Input placeholder="Số nhà, đường…" value={data.address} onChange={handleChange("address")} required className="h-9 sm:h-10 text-sm" />
                                 {errors.address && <p className="text-xs text-red-600 mt-1">{errors.address}</p>}
                             </div>
 
                             {/* 3 dropdown: Tỉnh → (Quận) → Phường */}
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div className="space-y-3">
                                 <div>
-                                    <label className="text-sm font-medium">Tỉnh/Thành phố</label>
+                                    <label className="text-xs sm:text-sm font-medium block mb-1">Tỉnh/Thành phố</label>
                                     <Select value={data.province} onValueChange={(v) => setData((s) => ({ ...s, province: v, district: "", ward: "" }))}>
-                                        <SelectTrigger>
+                                        <SelectTrigger className="h-9 sm:h-10 text-sm">
                                             <SelectValue placeholder="Chọn tỉnh/thành" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {addressData.map((p) => (
-                                                <SelectItem key={p.name} value={p.name}>
+                                                <SelectItem key={p.name} value={p.name} className="text-sm">
                                                     {p.name}
                                                 </SelectItem>
                                             ))}
@@ -251,14 +251,14 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
 
                                 {hasDistricts(currentProvince) && (
                                     <div>
-                                        <label className="text-sm font-medium">Quận/Huyện</label>
+                                        <label className="text-xs sm:text-sm font-medium block mb-1">Quận/Huyện</label>
                                         <Select value={data.district} onValueChange={(v) => setData((s) => ({ ...s, district: v, ward: "" }))} disabled={!data.province}>
-                                            <SelectTrigger>
+                                            <SelectTrigger className="h-9 sm:h-10 text-sm">
                                                 <SelectValue placeholder={!data.province ? "Chọn tỉnh trước" : "Chọn quận/huyện"} />
                                             </SelectTrigger>
                                             <SelectContent>
                                                 {districtList.map((d) => (
-                                                    <SelectItem key={d.name} value={d.name}>
+                                                    <SelectItem key={d.name} value={d.name} className="text-sm">
                                                         {d.name}
                                                     </SelectItem>
                                                 ))}
@@ -269,14 +269,14 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
                                 )}
 
                                 <div>
-                                    <label className="text-sm font-medium">Phường/Xã</label>
+                                    <label className="text-xs sm:text-sm font-medium block mb-1">Phường/Xã</label>
                                     <Select value={data.ward} onValueChange={(v) => setData((s) => ({ ...s, ward: v }))} disabled={!data.province || (hasDistricts(currentProvince) && !data.district)}>
-                                        <SelectTrigger>
+                                        <SelectTrigger className="h-9 sm:h-10 text-sm">
                                             <SelectValue placeholder={!data.province ? "Chọn tỉnh trước" : hasDistricts(currentProvince) && !data.district ? "Chọn quận trước" : "Chọn phường/xã"} />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {wardList.map((w) => (
-                                                <SelectItem key={w} value={w}>
+                                                <SelectItem key={w} value={w} className="text-sm">
                                                     {w}
                                                 </SelectItem>
                                             ))}
@@ -287,8 +287,8 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
                             </div>
 
                             <div>
-                                <label className="text-sm font-medium">Ghi chú (tuỳ chọn)</label>
-                                <Textarea placeholder="Giao giờ hành chính…" value={data.note} onChange={handleChange("note")} />
+                                <label className="text-xs sm:text-sm font-medium block mb-1">Ghi chú (tuỳ chọn)</label>
+                                <Textarea placeholder="Giao giờ hành chính…" value={data.note} onChange={handleChange("note")} className="min-h-[60px] sm:min-h-[80px] text-sm resize-none" />
                             </div>
                         </div>
 
@@ -296,13 +296,13 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
 
                         {/* --- Payment --- */}
                         <div className="space-y-3">
-                            <h4 className="text-base font-semibold">Hình thức thanh toán</h4>
+                            <h4 className="text-sm sm:text-base font-semibold">Hình thức thanh toán</h4>
 
-                            <RadioGroup value={data.paymentMethod} onValueChange={(v: PaymentMethod) => setData((s) => ({ ...s, paymentMethod: v }))} className="grid grid-cols-1 gap-2">
+                            <RadioGroup value={data.paymentMethod} onValueChange={(v: PaymentMethod) => setData((s) => ({ ...s, paymentMethod: v }))} className="grid grid-cols-1 gap-3">
                                 <div className="flex items-start gap-3 rounded-md border p-3">
-                                    <RadioGroupItem value="vnpay" id="pay-vnpay" />
-                                    <label htmlFor="pay-vnpay" className="cursor-pointer">
-                                        <div className="font-medium inline-flex items-center gap-2">Thanh toán VNPay (dữ liệu mẫu)</div>
+                                    <RadioGroupItem value="vnpay" id="pay-vnpay" className="mt-0.5" />
+                                    <label htmlFor="pay-vnpay" className="cursor-pointer flex-1">
+                                        <div className="font-medium inline-flex items-center gap-2 text-sm">Thanh toán VNPay (dữ liệu mẫu)</div>
                                         <ul className="text-xs text-muted-foreground list-disc ml-5 mt-1 space-y-0.5">
                                             <li>Tạo QR VNPay và xác nhận thủ công (chưa tích hợp).</li>
                                             <li>Freeship mọi đơn hàng.</li>
@@ -310,9 +310,9 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
                                     </label>
                                 </div>
                                 <div className="flex items-start gap-3 rounded-md border p-3">
-                                    <RadioGroupItem value="cod" id="pay-cod" />
-                                    <label htmlFor="pay-cod" className="cursor-pointer">
-                                        <div className="font-medium inline-flex items-center gap-2">Thanh toán trực tiếp (COD)</div>
+                                    <RadioGroupItem value="cod" id="pay-cod" className="mt-0.5" />
+                                    <label htmlFor="pay-cod" className="cursor-pointer flex-1">
+                                        <div className="font-medium inline-flex items-center gap-2 text-sm">Thanh toán trực tiếp (COD)</div>
                                         <ul className="text-xs text-muted-foreground list-disc ml-5 mt-1 space-y-0.5">
                                             <li>Khách được kiểm tra hàng trước khi nhận.</li>
                                             <li>Freeship mọi đơn hàng.</li>
@@ -323,7 +323,7 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
                         </div>
 
                         {/* --- Recap --- */}
-                        <div className="space-y-2 rounded-md border p-3 text-sm">
+                        <div className="space-y-2 rounded-md border p-3 text-sm bg-gray-50">
                             <div className="flex justify-between">
                                 <span>Tạm tính</span>
                                 <span>{formatPrice(subtotal)}</span>
@@ -339,7 +339,7 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
                                 </div>
                             )}
                             <Separator />
-                            <div className="flex justify-between font-semibold">
+                            <div className="flex justify-between font-semibold text-base">
                                 <span>Tổng cộng</span>
                                 <span className="text-red-600">{formatPrice(total)}</span>
                             </div>
@@ -348,14 +348,14 @@ export default function CheckoutSheet({ open, onOpenChange, subtotal, shippingFe
                 </div>
 
                 {/* FOOTER CỐ ĐỊNH (không cuộn) */}
-                <SheetFooter className="gap-3 p-4 border-t bg-background">
-                    <div className="flex flex-col items-center justify-center gap-3 w-full">
-                        <Button type="submit" form="checkout-form" className="inline-flex items-center gap-2 w-full" disabled={processing}>
+                <SheetFooter className="p-3 sm:p-4 border-t bg-background">
+                    <div className="flex flex-col gap-2 w-full">
+                        <Button type="submit" form="checkout-form" className="inline-flex items-center justify-center gap-2 w-full h-10 sm:h-12 text-sm sm:text-base" disabled={processing}>
                             {processing ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />}
                             Xác nhận thanh toán
                         </Button>
 
-                        <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="w-full">
+                        <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="w-full h-10 text-sm" disabled={processing}>
                             Quay lại giỏ hàng
                         </Button>
                     </div>

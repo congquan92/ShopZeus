@@ -85,7 +85,7 @@ export default function CartPage() {
     };
 
     return (
-        <div className="container mx-auto p-2 space-y-4">
+        <div className="container mx-auto p-2 sm:p-4 space-y-4">
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
@@ -103,23 +103,23 @@ export default function CartPage() {
             <TitleCompact title="Giỏ Hàng Của Bạn" subtitle={`${cartItems.length} sản phẩm trong giỏ hàng`} />
 
             {cartItems.length === 0 ? (
-                <div className="text-center py-16">
-                    <ShoppingBag className="mx-auto h-16 w-16 text-gray-400 mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">Giỏ hàng trống</h3>
-                    <p className="text-gray-500 mb-6">Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
+                <div className="text-center py-12 sm:py-16">
+                    <ShoppingBag className="mx-auto h-12 w-12 sm:h-16 sm:w-16 text-gray-400 mb-4" />
+                    <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-2">Giỏ hàng trống</h3>
+                    <p className="text-sm sm:text-base text-gray-500 mb-6 px-4">Hãy thêm sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
                     <Button asChild>
                         <a href="/">Tiếp tục mua sắm</a>
                     </Button>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div className="lg:col-span-2 space-y-4">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
+                    <div className="lg:col-span-2 space-y-3 sm:space-y-4">
                         {cartItems.map((item) => (
                             <CartItemRow key={item.id} item={item} onQtyChange={updateQuantity} onRemove={removeItem} formatPrice={formatPrice} />
                         ))}
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-4 lg:sticky lg:top-4 lg:self-start">
                         <OrderSummary
                             subtotal={subtotal}
                             shippingFee={shippingFee}
@@ -133,9 +133,9 @@ export default function CartPage() {
                         />
 
                         <Card className="p-0 rounded-none shadow-sm">
-                            <CardContent className="p-4">
-                                <h4 className="font-medium mb-2">Thông tin vận chuyển</h4>
-                                <ul className="text-sm text-gray-600 space-y-1">
+                            <CardContent className="p-3 sm:p-4">
+                                <h4 className="font-medium mb-2 text-sm sm:text-base">Thông tin vận chuyển</h4>
+                                <ul className="text-xs sm:text-sm text-gray-600 space-y-1">
                                     <li>• Miễn phí vận chuyển cho đơn từ 500k</li>
                                     <li>• Giao hàng trong 2-3 ngày làm việc</li>
                                     <li>• Đổi trả miễn phí trong 7 ngày</li>

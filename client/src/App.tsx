@@ -10,6 +10,9 @@ import Cart from "./components/cart";
 import Profile from "./components/profile";
 import ClothSize from "./components/clothsize";
 import Wishlist from "./components/wishlist";
+import Notifi from "./components/notifi";
+import path from "path";
+import Orders from "./components/orders";
 
 // User Layout
 
@@ -28,6 +31,8 @@ const userRoutes = [
     { path: "/profile", element: <Profile /> },
     { path: "/cloth-size", element: <ClothSize /> },
     { path: "/wishlist", element: <Wishlist /> },
+    { path: "/notifications", element: <Notifi /> },
+    { path: "/orders", element: <Orders /> },
     { path: "/*", element: <h1>404</h1> },
 ];
 
