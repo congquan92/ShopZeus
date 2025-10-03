@@ -18,8 +18,6 @@ export default function SecurityTab() {
     const [showNew, setShowNew] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
 
-    const [loading, setLoading] = useState(false);
-
     const resetForm = () => {
         setOldPassword("");
         setNewPassword("");
@@ -27,12 +25,10 @@ export default function SecurityTab() {
         setShowOld(false);
         setShowNew(false);
         setShowConfirm(false);
-        setLoading(false);
     };
 
     const handleChangePassword = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (loading) return;
 
         // // Basic client-side validation
         // if (!oldPassword) {
@@ -59,7 +55,6 @@ export default function SecurityTab() {
         // }
 
         try {
-            setLoading(true);
             const payload = {
                 oldPassword,
                 password: newPassword,
@@ -91,8 +86,6 @@ export default function SecurityTab() {
         } catch (err) {
             console.error(err);
             toast.error("Lỗi mạng hoặc server.", { position: "top-center" });
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -130,15 +123,26 @@ export default function SecurityTab() {
                                         <DialogTitle>Đổi mật khẩu</DialogTitle> <DialogDescription>Nhập mật khẩu cũ và mật khẩu mới để tiếp tục.</DialogDescription>
                                     </DialogHeader>
                                     <div className="grid gap-4 py-2">
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="oldPassword">Mật khẩu cũ</Label> <Input id="oldPassword" type="password" placeholder="Nhập mật khẩu hiện tại" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
+                                        <div className="grid gap-2 relative">
+                                            <Label htmlFor="oldPassword">Mật khẩu cũ</Label>{" "}
+                                            <Input id="oldPassword" type={showOld ? "text" : "password"} placeholder="Nhập mật khẩu hiện tại" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />{" "}
+                                            <div className="absolute right-3 top-[33px] cursor-pointer" onClick={() => setShowOld(!showOld)}>
+                                                {showOld ? <EyeOff className="size-4 text-gray-500" /> : <Eye className="size-4 text-gray-500" />}
+                                            </div>
                                         </div>
-                                        <div className="grid gap-2">
-                                            <Label htmlFor="newPassword">Mật khẩu mới</Label> <Input id="newPassword" type="password" placeholder="Nhập mật khẩu mới" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                                        <div className="grid gap-2 relative">
+                                            <Label htmlFor="newPassword">Mật khẩu mới</Label>{" "}
+                                            <Input id="newPassword" type={showNew ? "text" : "password"} placeholder="Nhập mật khẩu mới" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                                            <div className="absolute right-3 top-[33px] cursor-pointer" onClick={() => setShowNew(!showNew)}>
+                                                {showNew ? <EyeOff className="size-4 text-gray-500" /> : <Eye className="size-4 text-gray-500" />}
+                                            </div>
                                         </div>
-                                        <div className="grid gap-2">
+                                        <div className="grid gap-2 relative">
                                             <Label htmlFor="confirmPassword">Xác nhận mật khẩu mới</Label>
-                                            <Input id="confirmPassword" type="password" placeholder="Nhập lại mật khẩu mới" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                                            <Input id="confirmPassword" type={showConfirm ? "text" : "password"} placeholder="Nhập lại mật khẩu mới" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                                            <div className="absolute right-3 top-[33px] cursor-pointer" onClick={() => setShowConfirm(!showConfirm)}>
+                                                {showConfirm ? <EyeOff className="size-4 text-gray-500" /> : <Eye className="size-4 text-gray-500" />}
+                                            </div>
                                         </div>
                                     </div>
                                     <DialogFooter>

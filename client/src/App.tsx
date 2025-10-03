@@ -14,6 +14,7 @@ import Notifi from "./components/notifi";
 import path from "path";
 import Orders from "./components/orders";
 import NotFound from "./components/404";
+import AboutPage from "./components/about";
 
 // User Layout
 
@@ -34,6 +35,7 @@ const userRoutes = [
     { path: "/wishlist", element: <Wishlist /> },
     { path: "/notifications", element: <Notifi /> },
     { path: "/orders", element: <Orders /> },
+    { path: "/about", element: <AboutPage /> },
     { path: "/*", element: <NotFound /> },
 ];
 

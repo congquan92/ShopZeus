@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Button } from "./ui/button";
+import { Home } from "lucide-react";
 
 export default function NotFound() {
     return (
@@ -26,7 +27,9 @@ export default function NotFound() {
                 <p className="mt-4 text-lg font-medium">Trang không tồn tại</p>
                 <p className="mt-2 text-muted-foreground">Kiểm tra xem bạn đã nhập đúng địa chỉ chưa, quay lại trang trước đó hoặc thử sử dụng tìm kiếm của chúng tôi để tìm một cái gì đó cụ thể.</p>
                 <Button className="mt-6">
-                    <Link to="/">Về trang chủ</Link>
+                    <Link to="/">
+                        <Home className="inline-flex mr-2" /> Về trang chủ
+                    </Link>
                 </Button>
             </div>
 

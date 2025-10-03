@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function RegisterOTP({ email, iduser, onBack, onLogin }: { email: string; iduser: string; onBack: () => void; onLogin: () => void }) {
     const [otp, setOtp] = useState("");
-    const [timeLeft, setTimeLeft] = useState(60); // 1 phút = 60 giây
+    const [timeLeft, setTimeLeft] = useState(300); // 5 phút = 300 giây
     const [resendAvailable, setResendAvailable] = useState(false);
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export default function RegisterOTP({ email, iduser, onBack, onLogin }: { email:
     const handleResend = () => {
         setTimeLeft(300);
         setResendAvailable(false);
-        fetch(`${import.meta.env.VITE_LOCAL_API}/otp/register/send?userId=${iduser}&otpType=VERIFICATION`, {
+        fetch(`${import.meta.env.VITE_LOCAL_API}/otp/send?userId=${iduser}&otpType=VERIFICATION`, {
             method: "POST",
         });
         toast.info("Mã OTP mới đã được gửi lại vào email của bạn");
