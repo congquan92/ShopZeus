@@ -1,8 +1,9 @@
-import { Package, Badge } from "lucide-react";
-
+import { Package } from "lucide-react";
+import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "../components/ui/card";
 import { useState } from "react";
+
 interface Order {
     id: number;
     orderNumber: string;
@@ -17,8 +18,9 @@ interface Order {
         quantity: number;
     }>;
 }
+
 export default function Orders() {
-    //sample data
+    // sample data
     const [orders] = useState<Order[]>([
         {
             id: 1,
@@ -64,6 +66,7 @@ export default function Orders() {
         };
         return statusConfig[status];
     };
+
     return (
         <div className="container mx-auto p-4">
             <Card>
@@ -73,23 +76,28 @@ export default function Orders() {
                         Lịch Sử Đơn Hàng
                     </CardTitle>
                 </CardHeader>
+
                 <CardContent>
                     <div className="space-y-4">
                         {orders.map((order) => (
                             <Card key={order.id} className="border-l-4 border-l-primary">
                                 <CardContent className="pt-4">
+                                    {/* Header đơn */}
                                     <div className="flex justify-between items-start mb-4">
                                         <div>
                                             <h4 className="font-semibold">Đơn hàng #{order.orderNumber}</h4>
                                             <p className="text-sm text-gray-600">Ngày đặt: {order.date}</p>
                                         </div>
-                                        <div className="text-right">
-                                            <Badge {...getStatusBadge(order.status)} />
-                                            <p className="text-lg font-semibold mt-1">{order.total.toLocaleString("vi-VN")}đ</p>
-                                        </div>
+                                        <Badge variant={getStatusBadge(order.status).variant}>{getStatusBadge(order.status).text}</Badge>
                                     </div>
 
-                                    <div className="space-y-2">
+                                    {/* Tổng tiền */}
+                                    <div>
+                                        <p className="text-lg font-semibold mt-1">{order.total.toLocaleString("vi-VN")}đ</p>
+                                    </div>
+
+                                    {/* Items */}
+                                    <div className="space-y-2 mt-3">
                                         {order.items.map((item) => (
                                             <div key={item.id} className="flex items-center gap-3 p-2 bg-gray-50 rounded">
                                                 <img src={item.image} alt={item.name} className="w-12 h-12 object-cover rounded" />
@@ -103,15 +111,18 @@ export default function Orders() {
                                         ))}
                                     </div>
 
+                                    {/* Actions */}
                                     <div className="flex gap-2 mt-4">
                                         <Button variant="outline" size="sm">
                                             Xem chi tiết
                                         </Button>
+
                                         {order.status === "delivered" && (
                                             <Button variant="outline" size="sm">
                                                 Đánh giá
                                             </Button>
                                         )}
+
                                         {order.status === "pending" && (
                                             <Button variant="destructive" size="sm">
                                                 Hủy đơn

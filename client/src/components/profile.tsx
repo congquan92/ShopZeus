@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SlashIcon, User, Package, Heart, Bell, Shield } from "lucide-react";
+import { SlashIcon, User, Shield } from "lucide-react";
 
 import TitleCompact from "./ui/title_compact";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "./ui/breadcrumb";

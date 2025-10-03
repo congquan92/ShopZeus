@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer";
 import Home from "./components/home";
 import Login from "./components/auth/login";
@@ -11,7 +11,6 @@ import Profile from "./components/profile";
 import ClothSize from "./components/clothsize";
 import Wishlist from "./components/wishlist";
 import Notifi from "./components/notifi";
-import path from "path";
 import Orders from "./components/orders";
 import NotFound from "./components/404";
 import AboutPage from "./components/about";
