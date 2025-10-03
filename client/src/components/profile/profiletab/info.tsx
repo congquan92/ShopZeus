@@ -11,8 +11,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
 import { Badge } from "../../ui/badge";
 import { Progress } from "../../ui/progress";
 import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "../../ui/select";
-import Loader from "../../ui/loader";
-import { Link } from "react-router";
+// import Loader from "../../ui/loader";
+import { Link } from "react-router-dom";
 
 interface UserProfile {
     id: number;
